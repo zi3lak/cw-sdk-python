@@ -11,7 +11,7 @@ It includes the following features:
 
 ## Installation
 ```
-pip install cryptowatch-sdk
+pip install cryptowatch
 ```
 
 ### Requirements
