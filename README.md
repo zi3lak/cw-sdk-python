@@ -8,10 +8,13 @@ It includes the following features:
  * Custom exceptions for API-specific issues (e.g.: Requests Allowance)
  * Smart back-off retries in case of API connectivity loss
 
+![cryptowatch-sdk-example](https://static.cryptowat.ch/static/images/changelog/cryptowatch-sdk-example.png)
+> You'll find it in the [`examples`](https://github.com/cryptowatch/cw-sdk-python/tree/master/tests/get_all_kraken_markets_with_5percent_perf_on_weekly.py) folder.
+
 
 ## Installation
 ```
-pip install cryptowatch
+pip install cryptowatch-sdk
 ```
 
 ### Requirements
@@ -21,15 +24,34 @@ pip install cryptowatch
 * marshmallow v3.2.2+
 * pyyaml v5.1.2+
 
+## API Crendential
+
+Using a credential file will allow you to authenticate your requests and grant you the API access of your account tier (Free, Basic or Pro).
+
+### Setup your credential file
+
+1. Generate an Cryptowatch API key from [your account](https://cryptowat.ch/account/api-access)
+2. Create your credential file on your machine by running in order:
+
+    2.1 `mkdir $HOME/.cw`
+
+    2.2 `echo "apikey: 123" > $HOME/.cw/credentials.yml` (where `123` is your 20 digits **public key**)
+
+3. Verify with `cat $HOME/.cw/credentials.yml` that you see something like below (`123` being your public key):
+
+```
+apikey: 123
+```
+
+The SDK will read your public key as soon as `import cryptowatch` is ran in your script.
+
+
 ## Usage
 
 ### REST API
 
 ```python
 import cryptowatch as cw
-
-# Authenticate the cryptowatch client
-cw.api_key = "YOUR_PUBLIC_API_KEY"
 
 # Assets
 cw.assets.list()
@@ -50,15 +72,15 @@ cw.markets.list("BINANCE") # Returns all markets on Binance
 # Returns market summary (last, high, low, change, volume)
 cw.markets.get("KRAKEN:BTCUSD")
 # Return market candlestick info (open, high, low, close, volume) on some timeframes
-cw.markets.get("KRAKEN:BTCUSD", "ohlc", periods=["4h", "1h", "1d"])
+cw.markets.get("KRAKEN:BTCUSD", ohlc=True, periods=["4h", "1h", "1d"])
 
 # Returns market last trades
-cw.markets.get("KRAKEN:BTCUSD", "trades")
+cw.markets.get("KRAKEN:BTCUSD", trades=True)
 
 # Return market current orderbook
-cw.markets.get("KRAKEN:BTCUSD", "orderbook")
+cw.markets.get("KRAKEN:BTCUSD", orderbook=True)
 # Return market current orderbook liquidity
-cw.markets.get("KRAKEN:BTCUSD", "liquidity")
+cw.markets.get("KRAKEN:BTCUSD", liquidity=True)
 ```
 
 ### Logging
@@ -74,33 +96,34 @@ logging.getLogger("cryptowatch").setLevel(logging.DEBUG)
 
 ### CLI
 
-The module exposes a simple utility, via the `-m` option, to return last market prices.
+The library exposes a simple utility, named `cryptowatch`, to return last market prices.
+
 
 #### By default it returns Kraken's BTCUSD market
 
 ```
-> python -m cryptowatch
+> cryptowatch
 7425.0
 ```
 
 #### Add another Kraken market to return this market last price
 
 ```
-> python -m cryptowatch btceur
+> cryptowatch btceur
 6758.1
 ```
 
 #### You can also specify your own exchange
 
 ```
-> python -m cryptowatch binance:ethbtc
+> cryptowatch binance:ethbtc
 0.020359
 ```
 
 When the market doesn't exist a return code of `1` will be set (`0` otherwise):
 
 ```
-> python -m cryptowatch binance:nosuchmarketusd
+> cryptowatch binance:nosuchmarketusd
 > echo $?
 1
 ```
@@ -109,7 +132,7 @@ When the market doesn't exist a return code of `1` will be set (`0` otherwise):
 
 ## Testing
 
-Unit tests are under the [tests](tests) folder and use `pytest`, run them all with:
+Unit tests are under the [tests](https://github.com/cryptowatch/cw-sdk-python/tree/master/tests) folder and use `pytest`, run them all with:
 
 ```
 make test
@@ -123,7 +146,7 @@ make test-http-real
 
 ## Development
 
-Testing and developement dependencies are in the [requirements.txt](requirements.txt) file, install them with:
+Testing and developement dependencies are in the [requirements.txt](https://github.com/cryptowatch/cw-sdk-python/tree/master/requirements.txt) file, install them with:
 
 ```
 pip install -r requirements.txt
@@ -137,4 +160,4 @@ make lint
 
 ## License
 
-[BSD-2-Clause](LICENSE)
+[BSD-2-Clause](https://github.com/cryptowatch/cw-sdk-python/tree/master/LICENSE)

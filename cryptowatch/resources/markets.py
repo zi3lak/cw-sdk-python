@@ -108,7 +108,7 @@ class MarketSummaryResource:
         self.volume_quote = volumeQuote
 
     def __repr__(self):
-        return "<MarketSummary({self.price}:{self.pair})>".format(self=self)
+        return "<MarketSummary({self.price})>".format(self=self)
 
 
 class MarketSummaryPriceSchema(Schema):

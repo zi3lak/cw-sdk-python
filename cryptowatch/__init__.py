@@ -7,9 +7,14 @@ from cryptowatch.resources.exchanges import Exchanges
 from cryptowatch.resources.markets import Markets
 
 
+# Package version
+__version__ = "0.0.3"
+
+
 # SDK constants
 api_endpoint = "https://api.cryptowat.ch"
-sdk_version = "0.0.1"
+sdk_version = __version__
+
 
 # HTTP client default settings
 verify_ssl = True
@@ -27,7 +32,7 @@ api_key = read_api_key_from_config()
 
 
 def is_authenticated():
-    return API_KEY is not None
+    return api_key is not None
 
 
 # Get an instance of the HTTP client

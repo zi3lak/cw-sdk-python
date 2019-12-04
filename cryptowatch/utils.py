@@ -43,5 +43,5 @@ def translate_periods(periods):
     }
     sec_periods = []
     for p in periods:
-        sec_periods.append(mapping.get(p))
+        sec_periods.append(mapping.get(str(p).lower()))
     return sec_periods
