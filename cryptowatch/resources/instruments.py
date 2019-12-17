@@ -14,7 +14,7 @@ class Instruments:
 
     def get(self, instrument):
         log("Getting instrument {}".format(instrument))
-        data = self.client.get_resource("/pairs/{}".format(instrument))
+        data, http_resp = self.client.get_resource("/pairs/{}".format(instrument))
         instrument_resp = json.loads(data)
         schema = InstrumentAPIResponseSchema()
         instrument_obj = schema.load(instrument_resp)
@@ -23,11 +23,12 @@ class Instruments:
                 instrument_obj._allowance.cost, instrument_obj._allowance.remaining
             )
         )
+        instrument_obj._http_response = http_resp
         return instrument_obj
 
     def list(self):
         log("Getting instruments")
-        data = self.client.get_resource("/pairs")
+        data, http_resp = self.client.get_resource("/pairs")
         instrument_resp = json.loads(data)
         schema = InstrumentListAPIResponseSchema()
         instruments_obj = schema.load(instrument_resp)
@@ -36,6 +37,7 @@ class Instruments:
                 instruments_obj._allowance.cost, instruments_obj._allowance.remaining
             )
         )
+        instruments_obj._http_response = http_resp
         return instruments_obj
 
 

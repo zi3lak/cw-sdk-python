@@ -8,7 +8,7 @@ from cryptowatch.resources.markets import Markets
 
 
 # Package version
-__version__ = "0.0.3"
+__version__ = "0.0.4"
 
 
 # SDK constants
@@ -37,6 +37,7 @@ def is_authenticated():
 
 # Get an instance of the HTTP client
 requestor = Requestor(api_endpoint, _user_agent, locals())
+
 
 # Serialize resources to namespace
 assets = Assets(requestor)

@@ -13,7 +13,7 @@ class Assets:
 
     def get(self, asset):
         log("Getting asset {}".format(asset))
-        data = self.client.get_resource("/assets/{}".format(asset))
+        data, http_resp = self.client.get_resource("/assets/{}".format(asset))
         asset_resp = json.loads(data)
         schema = AssetAPIResponseSchema()
         asset_obj = schema.load(asset_resp)
@@ -22,11 +22,12 @@ class Assets:
                 asset_obj._allowance.cost, asset_obj._allowance.remaining
             )
         )
+        asset_obj._http_response = http_resp
         return asset_obj
 
     def list(self):
         log("Listing all assets")
-        data = self.client.get_resource("/assets")
+        data, http_resp = self.client.get_resource("/assets")
         asset_resp = json.loads(data)
         schema = AssetListAPIResponseSchema()
         assets_obj = schema.load(asset_resp)
@@ -35,6 +36,7 @@ class Assets:
                 assets_obj._allowance.cost, assets_obj._allowance.remaining
             )
         )
+        assets_obj._http_response = http_resp
         return assets_obj
 
 

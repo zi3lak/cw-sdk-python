@@ -13,7 +13,7 @@ class Exchanges:
 
     def get(self, exchange):
         log("Getting exchange {}".format(exchange))
-        data = self.client.get_resource("/exchanges/{}".format(exchange))
+        data, http_resp = self.client.get_resource("/exchanges/{}".format(exchange))
         exchange_resp = json.loads(data)
         schema = ExchangeAPIResponseSchema()
         exchange_obj = schema.load(exchange_resp)
@@ -22,11 +22,12 @@ class Exchanges:
                 exchange_obj._allowance.cost, exchange_obj._allowance.remaining
             )
         )
+        exchange_obj._http_response = http_resp
         return exchange_obj
 
     def list(self):
         log("Getting all exchanges")
-        data = self.client.get_resource("/exchanges")
+        data, http_resp = self.client.get_resource("/exchanges")
         exchange_resp = json.loads(data)
         schema = ExchangeListAPIResponseSchema()
         exchanges_obj = schema.load(exchange_resp)
@@ -35,6 +36,7 @@ class Exchanges:
                 exchanges_obj._allowance.cost, exchanges_obj._allowance.remaining
             )
         )
+        exchanges_obj._http_response = http_resp
         return exchanges_obj
 
 

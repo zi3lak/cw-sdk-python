@@ -8,6 +8,17 @@ It includes the following features:
  * Custom exceptions for API-specific issues (e.g.: Requests Allowance)
  * Smart back-off retries in case of API connectivity loss
 
+## Installation
+```
+pip install cryptowatch-sdk
+```
+
+#### Note:
+
+The [`cryptowatch` library](https://pypi.org/project/cryptowatch/) is **not** related with [Cryptowatch](https://cryptowat.ch/). If you installed it by mistake run `pip uninstall cryptowatch` to remove it.
+
+The correct library name is `cryptowatch-sdk`.
+
 ## Example
 
 Showing all Kraken markets that already gained at least 5% over the current weekly candle.
@@ -47,10 +58,6 @@ for market in kraken.markets:
 ```
 
 
-## Installation
-```
-pip install cryptowatch-sdk
-```
 
 ### Requirements
 
@@ -88,6 +95,9 @@ The SDK will read your public key as soon as `import cryptowatch` is ran in your
 ```python
 import cryptowatch as cw
 
+# Set your API Key, it is by default read from  your ~/.cw/credentials.yml file
+cw.api_key = "123"
+
 # Assets
 cw.assets.list()
 cw.assets.get("BTC")
@@ -116,6 +126,16 @@ cw.markets.get("KRAKEN:BTCUSD", trades=True)
 cw.markets.get("KRAKEN:BTCUSD", orderbook=True)
 # Return market current orderbook liquidity
 cw.markets.get("KRAKEN:BTCUSD", liquidity=True)
+```
+
+You can access the raw HTTP response received via the `_http_response` attribute which is a [`requests.Response`](https://requests.readthedocs.io/en/stable/api/#requests.Response) object:
+
+```python
+import cryptowatch as cw
+
+bitcoin = cw.assets.get('btc')
+print(bitcoin._http_response)
+
 ```
 
 ### Logging

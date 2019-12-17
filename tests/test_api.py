@@ -3,6 +3,15 @@ import pytest
 import cryptowatch
 
 
+def test_set_api_key_programmatically():
+    cryptowatch.api_key = "123"
+    bitcoin = cryptowatch.assets.get("btc")
+    assert bitcoin._http_response.request.headers.get('X-CW-API-Key') == "123"
+    cryptowatch.api_key = "ABC"
+    assets = cryptowatch.assets.list()
+    assert assets._http_response.request.headers.get('X-CW-API-Key') != "123"
+
+
 def test_assets_endpoints():
     ## Testing getting one asset
     bitcoin = cryptowatch.assets.get("btc")

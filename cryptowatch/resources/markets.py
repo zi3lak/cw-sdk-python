@@ -43,7 +43,7 @@ class Markets:
             log("Getting market summary {}".format(market))
             resource = "/markets/{}/{}/summary".format(exchange, pair)
             schema = MarketSummaryAPIResponseSchema()
-        data = self.client.get_resource(resource)
+        data, http_resp = self.client.get_resource(resource)
         market_resp = json.loads(data)
         market_obj = schema.load(market_resp)
         log(
@@ -51,6 +51,7 @@ class Markets:
                 market_obj._allowance.cost, market_obj._allowance.remaining
             )
         )
+        market_obj._http_response = http_resp
         return market_obj
 
     def list(self, exchange=None):
@@ -60,7 +61,7 @@ class Markets:
         else:
             resource = "/markets"
             log("Getting all markets for all exchanges")
-        data = self.client.get_resource(resource)
+        data, http_resp = self.client.get_resource(resource)
         market_resp = json.loads(data)
         schema = MarketListAPIResponseSchema()
         markets_obj = schema.load(market_resp)
@@ -69,6 +70,7 @@ class Markets:
                 markets_obj._allowance.cost, markets_obj._allowance.remaining
             )
         )
+        markets_obj._http_response = http_resp
         return markets_obj
 
 

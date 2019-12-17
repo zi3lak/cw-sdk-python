@@ -3,7 +3,7 @@ import traceback
 import json
 from urllib3.util.retry import Retry
 
-from cryptowatch import errors
+import cryptowatch
 from cryptowatch.utils import log
 
 
@@ -51,7 +51,6 @@ class Requestor:
         if not user_agent:
             log("Warning: User-Agent header must be set.", is_error=True)
         # Options with defaults, overridden by kwargs
-        self.api_key = opts.get("api_key")
         self.verify_ssl = opts.get("verify_ssl", True)
         self.connect_timeout = opts.get("connect_timeout", 5)
         self.read_timeout = opts.get("read_timeout", 20)
@@ -72,12 +71,13 @@ class Requestor:
     def get_resource(self, resource):
         try:
             headers = {"User-Agent": self.user_agent, "Accept": "application/json"}
-            if self.api_key:
-                headers["X-CW-API-Key"] = self.api_key
+            if cryptowatch.api_key:
+                headers["X-CW-API-Key"] = cryptowatch.api_key
             url = "{}{}".format(self.api_endpoint, resource)
             log("HTTP GET {}\n\twith headers: {}".format(url, headers), is_debug=True)
             resp = self.api_client.get(
                 url,
+                headers=headers,
                 verify=self.verify_ssl,
                 timeout=(self.connect_timeout, self.read_timeout),
                 allow_redirects=True,
@@ -92,7 +92,7 @@ class Requestor:
             # Resource not found
             if resp.status_code == 404:
                 msg = resp.json().get("error", "No such resource at {}".format(url))
-                raise errors.APIResourceNotFoundError(
+                raise cryptowatch.errors.APIResourceNotFoundError(
                     msg, resp.text, resp.status_code, resp.request.headers,
                 )
             # Allowance exceeded
@@ -102,12 +102,12 @@ class Requestor:
                     "You have exceeded your current API allowance. "
                     "Upgrade for a higher allowance at https://cryptowat.ch/pricing",
                 )
-                raise errors.APIRateLimitError(
+                raise cryptowatch.errors.APIRateLimitError(
                     msg, resp.text, resp.status_code, resp.request.headers,
                 )
             # Any HTTP 4XX Error
             elif str(resp.status_code).startswith("4"):
-                raise errors.APIRequestError(
+                raise cryptowatch.errors.APIRequestError(
                     "Your request failed. Please try again in a moment.",
                     resp.text,
                     resp.status_code,
@@ -115,7 +115,7 @@ class Requestor:
                 )
             # Any HTTP 5XX Error
             elif str(resp.status_code).startswith("5"):
-                raise errors.APIServerError(
+                raise cryptowatch.errors.APIServerError(
                     "The Cryptowatch API is having some issues. "
                     "Please try again in a moment.",
                     resp.text,
@@ -124,11 +124,11 @@ class Requestor:
                 )
             # Any other HTTP Error
             else:
-                raise errors.APIError(
+                raise cryptowatch.errors.APIError(
                     "Error connecting to the API. Please try again in a moment.",
                     resp.text,
                     resp.status_code,
                     resp.request.headers,
                 )
         else:
-            return resp.text
+            return resp.text, resp
