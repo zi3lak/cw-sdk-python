@@ -72,7 +72,7 @@ class AssetSchema(Schema):
 
 class AssetAPIResponseSchema(Schema):
     result = fields.Nested(AssetSchema)
-    allowance = fields.Nested(AllowanceSchema)
+    allowance = fields.Nested(AllowanceSchema, partial=('account',))
 
     @post_load
     def make_asset(self, data, **kwargs):
@@ -81,7 +81,7 @@ class AssetAPIResponseSchema(Schema):
 
 class AssetListAPIResponseSchema(Schema):
     result = fields.Nested(AssetSchema, many=True)
-    allowance = fields.Nested(AllowanceSchema)
+    allowance = fields.Nested(AllowanceSchema, partial=('account',))
 
     @post_load
     def make_asset(self, data, **kwargs):

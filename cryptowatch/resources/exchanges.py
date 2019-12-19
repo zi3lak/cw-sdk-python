@@ -70,7 +70,7 @@ class ExchangeSchema(Schema):
 
 class ExchangeAPIResponseSchema(Schema):
     result = fields.Nested(ExchangeSchema)
-    allowance = fields.Nested(AllowanceSchema)
+    allowance = fields.Nested(AllowanceSchema, partial=('account',))
 
     @post_load
     def make_exchange_api_resp(self, data, **kwargs):
@@ -79,7 +79,7 @@ class ExchangeAPIResponseSchema(Schema):
 
 class ExchangeListAPIResponseSchema(Schema):
     result = fields.Nested(ExchangeSchema, many=True)
-    allowance = fields.Nested(AllowanceSchema)
+    allowance = fields.Nested(AllowanceSchema, partial=('account',))
 
     @post_load
     def make_exchange_list_api_resp(self, data, **kwargs):
