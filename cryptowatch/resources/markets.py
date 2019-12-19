@@ -133,6 +133,9 @@ class MarketSummaryPriceResource:
         self.change = change.get("percentage")
         self.change_absolute = change.get("absolute")
 
+    def __repr__(self):
+        return "<MarketSummaryPriceResource({self.last})>".format(self=self)
+
 
 class MarketSummarySchema(Schema):
 
@@ -290,12 +293,12 @@ class MarketOHLCAPIResponse:
         self._fetched_at = dt.datetime.now()
 
     def __repr__(self):
-        return "<MarketOHLCAPIResponse({self.candles})>".format(self=self)
+        return "<MarketOHLCAPIResponse()>"
 
 
 class MarketSummaryAPIResponseSchema(Schema):
     result = fields.Nested(MarketSummarySchema)
-    allowance = fields.Nested(AllowanceSchema)
+    allowance = fields.Nested(AllowanceSchema, partial=('account',))
 
     @post_load
     def make_market_summary_api_resp(self, data, **kwargs):
