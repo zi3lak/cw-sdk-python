@@ -280,6 +280,8 @@ class MarketOHLCAPIResponse:
             self.of_3d = result.get("259200", [])
         if result.get("604800", []):
             self.of_1w = result.get("604800", [])
+        if result.get("604800_Monday", []):
+            self.of_1w_monday = result.get("604800_Monday", [])
         self._legend = [
             "close timestamp",
             "open",

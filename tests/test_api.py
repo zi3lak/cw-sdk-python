@@ -129,3 +129,28 @@ def test_markets_endpoints():
     # This should raise an APIResourceNotFoundError Exception
     with pytest.raises(cryptowatch.errors.APIResourceNotFoundError):
         cryptowatch.markets.get("marketthatdoesntexists:shitcoinusd")
+
+def test_markets_endpoints():
+    ## Testing getting one market
+    candles = cryptowatch.markets.get("kraken:btcusd", ohlc=True)
+    # Test candles object structure
+    assert hasattr(candles, "of_1m")
+    assert hasattr(candles, "of_3m")
+    assert hasattr(candles, "of_5m")
+    assert hasattr(candles, "of_15m")
+    assert hasattr(candles, "of_30m")
+    assert hasattr(candles, "of_1h")
+    assert hasattr(candles, "of_2h")
+    assert hasattr(candles, "of_4h")
+    assert hasattr(candles, "of_6h")
+    assert hasattr(candles, "of_12h")
+    assert hasattr(candles, "of_1d")
+    assert hasattr(candles, "of_1w")
+    assert hasattr(candles, "of_1w_monday")
+    # test candles type
+    assert type(candles.of_1m) == type(list())
+    assert type(candles.of_1w) == type(list())
+    assert type(candles.of_1w_monday) == type(list())
+    # This should raise an APIResourceNotFoundError Exception
+    with pytest.raises(cryptowatch.errors.APIResourceNotFoundError):
+        cryptowatch.markets.get("candlesthatdoesntexists:shitcoinusd", ohlc=True)

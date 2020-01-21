@@ -8,7 +8,7 @@ from cryptowatch.resources.markets import Markets
 
 
 # Package version
-__version__ = "0.0.6"
+__version__ = "0.0.7"
 
 
 # SDK constants
