@@ -5,7 +5,7 @@ class AllowanceSchema(Schema):
     cost = fields.Integer()
     remaining = fields.Integer()
     remainingPaid = fields.Integer()
-    upgrade = fields.Str()
+    upgrade = fields.Str(missing="")
     account = fields.Str(missing="")
 
     @post_load
@@ -14,7 +14,7 @@ class AllowanceSchema(Schema):
 
 
 class AllowanceResource:
-    def __init__(self, cost, remaining, remainingPaid, upgrade, account=""):
+    def __init__(self, cost, remaining, remainingPaid, upgrade="", account=""):
         self.cost = cost
         self.remaining = remaining
         self.remaining_paid = remainingPaid
