@@ -6,10 +6,10 @@ import cryptowatch
 def test_set_api_key_programmatically():
     cryptowatch.api_key = "123"
     bitcoin = cryptowatch.assets.get("btc")
-    assert bitcoin._http_response.request.headers.get('X-CW-API-Key') == "123"
+    assert bitcoin._http_response.request.headers.get("X-CW-API-Key") == "123"
     cryptowatch.api_key = "ABC"
     assets = cryptowatch.assets.list()
-    assert assets._http_response.request.headers.get('X-CW-API-Key') != "123"
+    assert assets._http_response.request.headers.get("X-CW-API-Key") != "123"
 
 
 def test_assets_endpoints():
@@ -129,6 +129,7 @@ def test_markets_endpoints():
     # This should raise an APIResourceNotFoundError Exception
     with pytest.raises(cryptowatch.errors.APIResourceNotFoundError):
         cryptowatch.markets.get("marketthatdoesntexists:shitcoinusd")
+
 
 def test_markets_endpoints():
     ## Testing getting one market

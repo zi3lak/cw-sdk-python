@@ -1,4 +1,4 @@
-# Example showing how to get the last 30 candles for the 1 minute  time frame 
+# Example showing how to get the last 30 candles for the 1 minute  time frame
 # for the KRAKEN:BTCUSD market.
 
 import cryptowatch as cw

@@ -11,7 +11,7 @@ README = (HERE / "README.md").read_text()
 # This call to setup() does all the work
 setup(
     name="cryptowatch-sdk",
-    version="0.0.8",
+    version="0.0.9",
     description="Python bindings for the Cryptowatch API. Cryptocurrency markets, assets, instruments and exchanges data.",
     long_description=README,
     long_description_content_type="text/markdown",
@@ -29,26 +29,21 @@ setup(
         "Programming Language :: Python :: 3",
         "Programming Language :: Python :: 3.7",
     ],
-    install_requires=["marshmallow >= 3.2.2",
-                      "requests >= 2.22.0",
-                      "PyYAML >= 5.1.2",
-                      "urllib3 >= 1.25.7"],
-    packages=find_packages(exclude=("tests","examples")),
+    install_requires=[
+        "marshmallow >= 3.2.2",
+        "requests >= 2.22.0",
+        "PyYAML >= 5.1.2",
+        "urllib3 >= 1.25.7",
+        "websocket-client >= 0.56.0",
+    ],
+    packages=find_packages(exclude=("tests", "examples")),
     include_package_data=True,
-    entry_points={
-        "console_scripts": [
-            "cryptowatch=cryptowatch.__main__:main",
-        ]
-    },
+    entry_points={"console_scripts": ["cryptowatch=cryptowatch.__main__:main",]},
     python_requires=">=3.7",
     project_urls={
         "Bug Tracker": "https://github.com/cryptowatch/cw-sdk-python/issues",
         "Documentation": "https://github.com/cryptowatch/cw-sdk-python#installation",
         "Source Code": "https://github.com/cryptowatch/cw-sdk-python",
     },
-    tests_require=[
-        "pytest >= 5.3.1",
-        "pytest-mock >= 1.12",
-        "requests-mock >= 1.7"
-    ]
+    tests_require=["pytest >= 5.3.1", "pytest-mock >= 1.12", "requests-mock >= 1.7"],
 )

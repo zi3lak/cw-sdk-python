@@ -1,6 +1,7 @@
 from cryptowatch.utils import log
-from cryptowatch.auth import read_api_key_from_config
+from cryptowatch.auth import read_config
 from cryptowatch.requestor import Requestor
+from cryptowatch import stream
 from cryptowatch.resources.assets import Assets
 from cryptowatch.resources.instruments import Instruments
 from cryptowatch.resources.exchanges import Exchanges
@@ -8,12 +9,21 @@ from cryptowatch.resources.markets import Markets
 
 
 # Package version
-__version__ = "0.0.8"
-
-
-# SDK constants
-api_endpoint = "https://api.cryptowat.ch"
+__version__ = "0.0.9"
 sdk_version = __version__
+
+# Try to read and set API endpoints from credential file
+api_key, rest_endpoint, ws_endpoint = read_config()
+
+# API default endpoints
+if not rest_endpoint:
+    rest_endpoint = "https://api.cryptowat.ch"
+if not ws_endpoint:
+    ws_endpoint = "wss://stream.cryptowat.ch/connect"
+
+
+def is_authenticated():
+    return api_key is not None
 
 
 # HTTP client default settings
@@ -27,16 +37,8 @@ _user_agent = (
 )
 
 
-# Try to read and set the API key from credential file
-api_key = read_api_key_from_config()
-
-
-def is_authenticated():
-    return api_key is not None
-
-
 # Get an instance of the HTTP client
-requestor = Requestor(api_endpoint, _user_agent, locals())
+requestor = Requestor(rest_endpoint, _user_agent, locals())
 
 
 # Serialize resources to namespace

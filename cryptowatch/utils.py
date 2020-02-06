@@ -1,5 +1,6 @@
 import os
 import logging
+import json
 
 
 cw_logger = logging.getLogger("cryptowatch")
@@ -40,8 +41,17 @@ def translate_periods(periods):
         "1d": "86400",
         "3d": "259200",
         "1w": "604800",
+        "1w_monday": "604800_Monday",
     }
     sec_periods = []
     for p in periods:
         sec_periods.append(mapping.get(str(p).lower()))
     return sec_periods
+
+
+def forge_stream_subscription_payload(resources):
+    subscription_payload = {"subscribe": {"subscriptions": []}}
+    for res in resources:
+        s = {"streamSubscription": {"resource": res}}
+        subscription_payload.get("subscribe").get("subscriptions").append(s)
+    return json.dumps(subscription_payload)

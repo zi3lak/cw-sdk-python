@@ -42,11 +42,11 @@ else:
 
 
 class Requestor:
-    def __init__(self, api_endpoint, user_agent, opts={}):
+    def __init__(self, rest_endpoint, user_agent, opts={}):
         # Must have options
         self.user_agent = user_agent
-        self.api_endpoint = api_endpoint
-        if not api_endpoint.startswith("https"):
+        self.rest_endpoint = rest_endpoint
+        if not rest_endpoint.startswith("https"):
             log('Warning: API endpoint must start with "https".', is_error=True)
         if not user_agent:
             log("Warning: User-Agent header must be set.", is_error=True)
@@ -73,7 +73,7 @@ class Requestor:
             headers = {"User-Agent": self.user_agent, "Accept": "application/json"}
             if cryptowatch.api_key:
                 headers["X-CW-API-Key"] = cryptowatch.api_key
-            url = "{}{}".format(self.api_endpoint, resource)
+            url = "{}{}".format(self.rest_endpoint, resource)
             log("HTTP GET {}\n\twith headers: {}".format(url, headers), is_debug=True)
             resp = self.api_client.get(
                 url,

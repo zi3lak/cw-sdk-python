@@ -58,13 +58,13 @@ for market in kraken.markets:
 ```
 
 
-
 ### Requirements
 
 * python v3.7+
 * requests v0.8.8+
 * marshmallow v3.2.2+
 * pyyaml v5.1.2+
+* websocket-client v0.56+
 
 ## API Crendential
 
@@ -130,6 +130,7 @@ cw.markets.get("KRAKEN:BTCUSD", liquidity=True)
 
 You can access the raw HTTP response received via the `_http_response` attribute which is a [`requests.Response`](https://requests.readthedocs.io/en/stable/api/#requests.Response) object:
 
+
 ```python
 import cryptowatch as cw
 
@@ -137,6 +138,52 @@ bitcoin = cw.assets.get('btc')
 print(bitcoin._http_response)
 
 ```
+
+### Websocket
+
+```python
+import cryptowatch as cw
+
+# Set your API Key
+cw.api_key = "123"
+
+# Subscribe to resources (https://docs.cryptowat.ch/websocket-api/data-subscriptions#resources)
+cw.stream.subscriptions = ["markets:*:ohlc"]
+
+# What to do on each candle update
+def handle_intervals_update(interval_update):
+    market_msg = ">>> Market#{} Exchange#{} Pair#{}: {} New Candles".format(
+        interval_update.market_id,
+        interval_update.exchange_id,
+        interval_update.currency_pair_id,
+        len(interval_update.candles),
+    )
+    print(market_msg)
+    for candle in interval_update.candles:
+        candle_msg = "\tO:{} H:{} L:{} C:{} V:{} VB:{} PERIOD:{} CLOSE_TIMESTAMP:{}".format(
+            candle.open,
+            candle.high,
+            candle.low,
+            candle.close,
+            candle.volume,
+            candle.volume_base,
+            candle.period,
+            candle.close_timestamp,
+        )
+        print(candle_msg)
+
+cw.stream.on_intervals_update = handle_intervals_update
+
+
+# Start receiving
+cw.stream.connect()
+
+# Call disconnect to close the stream connection
+# cw.stream.disconnect()
+```
+
+See [this script](https://github.com/cryptowatch/cw-sdk-python/tree/master/examples/stream_example.py) for more streaming example.
+
 
 ### Logging
 
