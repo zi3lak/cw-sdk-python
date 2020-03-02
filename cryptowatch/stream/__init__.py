@@ -2,15 +2,14 @@ import websocket
 import json
 import traceback
 import threading
+from google import protobuf
 
 import cryptowatch
 from cryptowatch.utils import log
+from cryptowatch.errors import APIKeyError
 from cryptowatch.utils import forge_stream_subscription_payload
-from cryptowatch.stream.resources import TradeMarketUpdateSchema
-from cryptowatch.stream.resources import CandleMarketUpdateSchema
-from cryptowatch.stream.resources import OrderbookSpreadMarketUpdateSchema
-from cryptowatch.stream.resources import OrderbookSnapshotMarketUpdateSchema
-from cryptowatch.stream.resources import OrderbookDeltaMarketUpdateSchema
+from cryptowatch.stream.proto.public.stream import stream_pb2
+from cryptowatch.stream.proto.public.client import client_pb2
 
 
 subscriptions = []
@@ -19,7 +18,7 @@ _ws = None
 
 
 def _on_open(ws):
-    subs_payload = forge_stream_subscription_payload(subscriptions)
+    subs_payload = forge_stream_subscription_payload(subscriptions, client_pb2)
     log(
         "Connection established. Sending subscriptions payload: {}".format(
             subs_payload
@@ -39,65 +38,59 @@ def _on_close(ws):
 
 def on_market_update(ws, message):
     try:
-        message = message.decode("utf-8")
-        message = json.loads(message)
-        if "marketUpdate" in message:
-            if "intervalsUpdate" in message.get("marketUpdate", ""):
-                schema = CandleMarketUpdateSchema()
-                candle_obj = schema.load(message)
-                on_intervals_update(candle_obj)
-            elif "tradesUpdate" in message.get("marketUpdate", ""):
-                schema = TradeMarketUpdateSchema()
-                trade_obj = schema.load(message)
-                on_trades_update(trade_obj)
-            elif "orderBookUpdate" in message.get("marketUpdate", ""):
-                schema = OrderbookSnapshotMarketUpdateSchema()
-                orderbook_snapshot_obj = schema.load(message)
-                on_orderbook_snapshot_update(orderbook_snapshot_obj)
-            elif "orderBookDeltaUpdate" in message.get("marketUpdate", ""):
-                schema = OrderbookDeltaMarketUpdateSchema()
-                orderbook_delta_obj = schema.load(message)
-                on_orderbook_delta_update(orderbook_delta_obj)
-            elif "orderBookSpreadUpdate" in message.get("marketUpdate", ""):
-                schema = OrderbookSpreadMarketUpdateSchema()
-                orderbook_spread_obj = schema.load(message)
-                on_orderbook_spread_update(orderbook_spread_obj)
-            else:
-                log(message, is_debug=True)
+        stream_message = stream_pb2.StreamMessage()
+        stream_message.ParseFromString(message)
+        if str(stream_message.marketUpdate.intervalsUpdate):
+            on_intervals_update(stream_message)
+        elif str(stream_message.marketUpdate.tradesUpdate):
+            on_trades_update(stream_message)
+        elif str(stream_message.marketUpdate.orderBookUpdate):
+            on_orderbook_snapshot_update(stream_message)
+        elif str(stream_message.marketUpdate.orderBookDeltaUpdate):
+            on_orderbook_delta_update(stream_message)
+        elif str(stream_message.marketUpdate.orderBookSpreadUpdate):
+            on_orderbook_spread_update(stream_message)
         else:
-            log(message, is_debug=True)
+            log(stream_message, is_debug=True)
+    except protobuf.message.DecodeError as ex:
+        log("Could not decode this message: {}".format(message), is_error=True)
+        log(traceback.format_exc(), is_error=True)
     except Exception as ex:
-        log(ex, is_error=True)
         log(traceback.format_exc(), is_error=True)
 
 
 def on_trades_update(trades_update):
-    log(trades_update, is_debug=True)
+    pass
 
 
 def on_intervals_update(intervals_update):
-    log(intervals_update, is_debug=True)
+    pass
 
 
 def on_orderbook_spread_update(orderbook_spread_update):
-    log(orderbook_spread_update, is_debug=True)
+    pass
 
 
 def on_orderbook_delta_update(orderbook_delta_update):
-    log(orderbook_delta_update, is_debug=True)
+    pass
 
 
 def on_orderbook_snapshot_update(orderbook_snapshot_update):
-    log(orderbook_snapshot_update, is_debug=True)
+    pass
 
 
 def connect(ping_timeout=20, ping_interval=70):
     if cryptowatch.api_key:
-        DSN = "{}?apikey={}".format(cryptowatch.ws_endpoint, cryptowatch.api_key)
+        DSN = "{}?apikey={}&format=binary".format(
+            cryptowatch.ws_endpoint, cryptowatch.api_key
+        )
     else:
-        DSN = cryptowatch.ws_endpoint
+        raise APIKeyError(
+            "An API key is required to use the Cryptowatch Websocket API.\n"
+            "You can create one at https://cryptowat.ch/account/api-access"
+        )
     log("DSN used: {}".format(DSN), is_debug=True)
-    websocket.enableTrace(True)
+    websocket.enableTrace(False)
     global _ws
     _ws = websocket.WebSocketApp(
         DSN,

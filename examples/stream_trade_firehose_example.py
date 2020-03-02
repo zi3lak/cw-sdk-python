@@ -6,20 +6,24 @@ cw.stream.subscriptions = ["markets:*:trades"]
 
 
 def handle_trades_update(trade_update):
+    """
+        trade_update follows Cryptowatch protocol buffer format:
+        https://github.com/cryptowatch/proto/blob/master/public/markets/market.proto
+    """
     market_msg = ">>> Market#{} Exchange#{} Pair#{}: {} New Trades".format(
-        trade_update.market_id,
-        trade_update.exchange_id,
-        trade_update.currency_pair_id,
-        len(trade_update.trades),
+        trade_update.marketUpdate.market.marketId,
+        trade_update.marketUpdate.market.exchangeId,
+        trade_update.marketUpdate.market.currencyPairId,
+        len(trade_update.marketUpdate.tradesUpdate.trades),
     )
     print(market_msg)
-    for trade in trade_update.trades:
-        trade_msg = "\tID:{} TIMESTAMP:{} PRICE:{} AMOUNT:{} SIDE:{}".format(
-            trade.external_id,
+    for trade in trade_update.marketUpdate.tradesUpdate.trades:
+        trade_msg = "\tID:{} TIMESTAMP:{} TIMESTAMPNANO:{} PRICE:{} AMOUNT:{}".format(
+            trade.externalId,
             trade.timestamp,
-            trade.price,
-            trade.amount,
-            trade.order_side,
+            trade.timestampNano,
+            trade.priceStr,
+            trade.amountStr,
         )
         print(trade_msg)
 
@@ -30,5 +34,5 @@ cw.stream.on_trades_update = handle_trades_update
 cw.stream.connect()
 
 # Stop receiving after 10 seconds
-time.sleep(10)
-cw.stream.disconnect()
+# time.sleep(10)
+# cw.stream.disconnect()

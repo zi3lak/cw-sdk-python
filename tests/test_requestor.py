@@ -6,6 +6,39 @@ from cryptowatch import rest_endpoint
 import cryptowatch
 
 
+def test_set_api_key_programmatically(requests_mock):
+    cryptowatch.api_key = "ABC"
+    requests_mock.get(
+        "{}/assets/{}".format(rest_endpoint, "btc"),
+        status_code=200,
+        text="""{
+          "result": {
+            "id": 60,
+            "symbol": "btc",
+            "name": "Bitcoin",
+            "fiat": false,
+            "markets": {
+              "base": [
+                {
+                  "id": 1,
+                  "exchange": "bitfinex",
+                  "pair": "btcusd",
+                  "active": true,
+                  "route": "https://api.cryptowat.ch/markets/bitfinex/btcusd"
+                }]
+            }
+          },
+          "allowance": {
+                "cost": 40277,
+                "remaining": 3959423007,
+                "remainingPaid": 0
+              }
+          }""",
+    )
+    bitcoin = cryptowatch.assets.get("btc")
+    assert bitcoin._http_response.request.headers.get("X-CW-API-Key") == "ABC"
+
+
 def test_resource_not_found(requests_mock):
     # Assets
     asset_symbol = "yetanothershitcoin"
@@ -65,21 +98,21 @@ def test_server_error(requests_mock):
     # Server returning HTTP 500 INTERNAL SERVER ERROR
     asset_symbol = "btc"
     requests_mock.get(
-        "{}/assets/{}".format(rest_endpoint, asset_symbol), status_code=500
+        "{}/assets/{}".format(rest_endpoint, asset_symbol), status_code=500, text='{"error": "bad"}'
     )
     with pytest.raises(cryptowatch.errors.APIServerError):
         cryptowatch.assets.get(asset_symbol)
     # Server returning HTTP 502 BAD GATEWAY
     asset_symbol = "ltc"
     requests_mock.get(
-        "{}/assets/{}".format(rest_endpoint, asset_symbol), status_code=502
+        "{}/assets/{}".format(rest_endpoint, asset_symbol), status_code=502, text='{"error": "bad"}'
     )
     with pytest.raises(cryptowatch.errors.APIServerError):
         cryptowatch.assets.get(asset_symbol)
     # Server returning HTTP 503 SERVICE UNAVAILABLE
     asset_symbol = "ltc"
     requests_mock.get(
-        "{}/assets/{}".format(rest_endpoint, asset_symbol), status_code=503
+        "{}/assets/{}".format(rest_endpoint, asset_symbol), status_code=503, text='{"error": "bad"}'
     )
     with pytest.raises(cryptowatch.errors.APIServerError) as ex:
         print(ex)
@@ -89,7 +122,7 @@ def test_server_error(requests_mock):
 def test_client_error(requests_mock):
     asset_symbol = "btc"
     requests_mock.get(
-        "{}/assets/{}".format(rest_endpoint, asset_symbol), status_code=400, text=""
+        "{}/assets/{}".format(rest_endpoint, asset_symbol), status_code=400, text='{"error": "bad"}'
     )
     with pytest.raises(cryptowatch.errors.APIRequestError):
         cryptowatch.assets.get(asset_symbol)

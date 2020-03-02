@@ -4,6 +4,7 @@ The Cryptowatch Python library provides a convenient access to the [Cryptowatch 
 
 It includes the following features:
  * Auto-serialization of API responses into Python objects
+ * Websocket client with transparent handling of protobuf messages
  * API credentials automatically read from your `~/.cw/credentials.yml` config file
  * Custom exceptions for API-specific issues (e.g.: Requests Allowance)
  * Smart back-off retries in case of API connectivity loss
@@ -65,6 +66,7 @@ for market in kraken.markets:
 * marshmallow v3.2.2+
 * pyyaml v5.1.2+
 * websocket-client v0.56+
+* protobuf v3.11.3+
 
 ## API Crendential
 
@@ -150,29 +152,31 @@ cw.api_key = "123"
 # Subscribe to resources (https://docs.cryptowat.ch/websocket-api/data-subscriptions#resources)
 cw.stream.subscriptions = ["markets:*:ohlc"]
 
-# What to do on each candle update
-def handle_intervals_update(interval_update):
-    market_msg = ">>> Market#{} Exchange#{} Pair#{}: {} New Candles".format(
-        interval_update.market_id,
-        interval_update.exchange_id,
-        interval_update.currency_pair_id,
-        len(interval_update.candles),
+# What to do on each trade update
+def handle_trades_update(trade_update):
+    """
+        trade_update follows Cryptowatch protocol buffer format:
+        https://github.com/cryptowatch/proto/blob/master/public/markets/market.proto
+    """
+    market_msg = ">>> Market#{} Exchange#{} Pair#{}: {} New Trades".format(
+        trade_update.marketUpdate.market.marketId,
+        trade_update.marketUpdate.market.exchangeId,
+        trade_update.marketUpdate.market.currencyPairId,
+        len(trade_update.marketUpdate.tradesUpdate.trades),
     )
     print(market_msg)
-    for candle in interval_update.candles:
-        candle_msg = "\tO:{} H:{} L:{} C:{} V:{} VB:{} PERIOD:{} CLOSE_TIMESTAMP:{}".format(
-            candle.open,
-            candle.high,
-            candle.low,
-            candle.close,
-            candle.volume,
-            candle.volume_base,
-            candle.period,
-            candle.close_timestamp,
+    for trade in trade_update.marketUpdate.tradesUpdate.trades:
+        trade_msg = "\tID:{} TIMESTAMP:{} TIMESTAMPNANO:{} PRICE:{} AMOUNT:{}".format(
+            trade.externalId,
+            trade.timestamp,
+            trade.timestampNano,
+            trade.priceStr,
+            trade.amountStr,
         )
-        print(candle_msg)
+        print(trade_msg)
 
-cw.stream.on_intervals_update = handle_intervals_update
+
+cw.stream.on_trades_update = handle_trades_update
 
 
 # Start receiving
@@ -184,6 +188,35 @@ cw.stream.connect()
 
 See [this script](https://github.com/cryptowatch/cw-sdk-python/tree/master/examples/stream_example.py) for more streaming example.
 
+
+#### Converting protobuf messages to JSON
+
+If you need to convert the protobuf message to JSON, you can do so with `MessageToJson`. See the example below:
+
+```python
+from google.protobuf.json_format import MessageToJson
+import cryptowatch as cw
+
+# Set your API Key
+cw.api_key = "123"
+
+# Subscribe to resources (https://docs.cryptowat.ch/websocket-api/data-subscriptions#resources)
+cw.stream.subscriptions = ["markets:*:ohlc"]
+
+# What to do on each trade update
+def handle_trades_update(trade_update):
+    """
+        trade_update follows Cryptowatch protocol buffer format:
+        https://github.com/cryptowatch/proto/blob/master/public/markets/market.proto
+    """
+    MessageToJson(trade_update)
+
+cw.stream.on_trades_update = handle_trades_update
+
+
+# Start receiving
+cw.stream.connect()
+```
 
 ### Logging
 

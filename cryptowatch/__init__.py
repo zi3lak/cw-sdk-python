@@ -9,8 +9,9 @@ from cryptowatch.resources.markets import Markets
 
 
 # Package version
-__version__ = "0.0.9"
+__version__ = "0.0.10"
 sdk_version = __version__
+
 
 # Try to read and set API endpoints from credential file
 api_key, rest_endpoint, ws_endpoint = read_config()

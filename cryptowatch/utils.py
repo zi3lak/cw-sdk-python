@@ -49,9 +49,13 @@ def translate_periods(periods):
     return sec_periods
 
 
-def forge_stream_subscription_payload(resources):
-    subscription_payload = {"subscribe": {"subscriptions": []}}
-    for res in resources:
-        s = {"streamSubscription": {"resource": res}}
-        subscription_payload.get("subscribe").get("subscriptions").append(s)
-    return json.dumps(subscription_payload)
+def forge_stream_subscription_payload(resources, client_pb2=None):
+    subscription_msg = ""
+    if client_pb2:
+        client_msg = client_pb2.ClientMessage()
+        for res in resources:
+            t = client_msg.subscribe.subscriptions.add()
+            t.stream_subscription.resource = res
+        subscription_msg = client_msg.SerializeToString()
+
+    return subscription_msg

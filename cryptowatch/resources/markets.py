@@ -219,9 +219,7 @@ class MarketOrderBookAPIResponse:
         self._allowance = allowance
 
     def __repr__(self):
-        return "<MarketOrderBookAPIResponse({self.bids[:10]!r}{self.asks[:10]!r})>".format(
-            self=self
-        )
+        return "<MarketOrderBookAPIResponse()>".format(self=self)
 
 
 class MarketTradesAPIResponseSchema(Schema):

@@ -36,6 +36,10 @@ class APIRequestError(CryptowatchError):
     pass
 
 
+class APIKeyError(CryptowatchError):
+    pass
+
+
 class APIError(CryptowatchError):
     pass
 

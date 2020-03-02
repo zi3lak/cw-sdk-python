@@ -107,20 +107,20 @@ class Requestor:
                 )
             # Any HTTP 4XX Error
             elif str(resp.status_code).startswith("4"):
+                msg = resp.json().get(
+                    "error", "Your request failed. Please try again in a moment."
+                )
                 raise cryptowatch.errors.APIRequestError(
-                    "Your request failed. Please try again in a moment.",
-                    resp.text,
-                    resp.status_code,
-                    resp.request.headers,
+                    msg, resp.text, resp.status_code, resp.request.headers,
                 )
             # Any HTTP 5XX Error
             elif str(resp.status_code).startswith("5"):
+                msg = resp.json().get(
+                    "error",
+                    "The Cryptowatch API is having some issues. Please try again in a moment.",
+                )
                 raise cryptowatch.errors.APIServerError(
-                    "The Cryptowatch API is having some issues. "
-                    "Please try again in a moment.",
-                    resp.text,
-                    resp.status_code,
-                    resp.request.headers,
+                    msg, resp.text, resp.status_code, resp.request.headers,
                 )
             # Any other HTTP Error
             else:

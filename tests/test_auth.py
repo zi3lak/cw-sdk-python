@@ -1,9 +1,19 @@
 import os
 from unittest.mock import patch, mock_open
 from unittest import mock
+import pytest
 
 
+import cryptowatch
 from cryptowatch.auth import read_config
+
+
+def test_stream_auth_api_key_missing():
+    # No API key set, should raise an exception
+    with pytest.raises(cryptowatch.errors.APIKeyError):
+        cryptowatch.api_key = ""
+        cryptowatch.stream.subscriptions = ["markets:*:trades"]
+        cryptowatch.stream.connect()
 
 
 def test_open_config_file(mocker):

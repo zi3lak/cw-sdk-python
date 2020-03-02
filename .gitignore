@@ -2,6 +2,9 @@
 # Created by https://www.gitignore.io/api/linux,macos,python,virtualenv
 # Edit at https://www.gitignore.io/?templates=linux,macos,python,virtualenv
 
+# Don't track .original (used as sed backup when replacing import statements)
+*.original
+
 ### Linux ###
 *~
 

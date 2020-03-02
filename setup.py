@@ -11,7 +11,7 @@ README = (HERE / "README.md").read_text()
 # This call to setup() does all the work
 setup(
     name="cryptowatch-sdk",
-    version="0.0.9",
+    version="0.0.10",
     description="Python bindings for the Cryptowatch API. Cryptocurrency markets, assets, instruments and exchanges data.",
     long_description=README,
     long_description_content_type="text/markdown",
@@ -26,7 +26,6 @@ setup(
         "Topic :: Office/Business :: Financial :: Investment",
         "Intended Audience :: Financial and Insurance Industry",
         "License :: OSI Approved :: BSD License",
-        "Programming Language :: Python :: 3",
         "Programming Language :: Python :: 3.7",
     ],
     install_requires=[
@@ -35,6 +34,7 @@ setup(
         "PyYAML >= 5.1.2",
         "urllib3 >= 1.25.7",
         "websocket-client >= 0.56.0",
+        "protobuf >= 3.11.3",
     ],
     packages=find_packages(exclude=("tests", "examples")),
     include_package_data=True,
