@@ -9,7 +9,7 @@ from cryptowatch.resources.markets import Markets
 
 
 # Package version
-__version__ = "0.0.10"
+__version__ = "0.0.11"
 sdk_version = __version__
 
 
