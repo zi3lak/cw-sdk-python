@@ -3,7 +3,6 @@ import pytest
 import cryptowatch
 
 
-
 def test_assets_endpoints():
     ## Testing getting one asset
     bitcoin = cryptowatch.assets.get("btc")
@@ -154,4 +153,3 @@ def test_unknown_api_key():
     cryptowatch.api_key = "123"
     with pytest.raises(cryptowatch.errors.APIRequestError):
         cryptowatch.assets.get("btc")
-

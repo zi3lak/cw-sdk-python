@@ -18,11 +18,12 @@ class Instruments:
         instrument_resp = json.loads(data)
         schema = InstrumentAPIResponseSchema()
         instrument_obj = schema.load(instrument_resp)
-        log(
-            "API Allowance: cost={} remaining={}".format(
-                instrument_obj._allowance.cost, instrument_obj._allowance.remaining
+        if instrument_obj._allowance:
+            log(
+                "API Allowance: cost={} remaining={}".format(
+                    instrument_obj._allowance.cost, instrument_obj._allowance.remaining
+                )
             )
-        )
         instrument_obj._http_response = http_resp
         return instrument_obj
 
@@ -32,11 +33,13 @@ class Instruments:
         instrument_resp = json.loads(data)
         schema = InstrumentListAPIResponseSchema()
         instruments_obj = schema.load(instrument_resp)
-        log(
-            "API Allowance: cost={} remaining={}".format(
-                instruments_obj._allowance.cost, instruments_obj._allowance.remaining
+        if instruments_obj._allowance:
+            log(
+                "API Allowance: cost={} remaining={}".format(
+                    instruments_obj._allowance.cost,
+                    instruments_obj._allowance.remaining,
+                )
             )
-        )
         instruments_obj._http_response = http_resp
         return instruments_obj
 
@@ -75,7 +78,7 @@ class InstrumentSchema(Schema):
 
 class InstrumentAPIResponseSchema(Schema):
     result = fields.Nested(InstrumentSchema)
-    allowance = fields.Nested(AllowanceSchema, partial=("account",))
+    allowance = fields.Nested(AllowanceSchema, partial=("account",), missing=None)
 
     @post_load
     def make_instrument_api_resp(self, data, **kwargs):
@@ -84,7 +87,7 @@ class InstrumentAPIResponseSchema(Schema):
 
 class InstrumentListAPIResponseSchema(Schema):
     result = fields.Nested(InstrumentSchema, many=True)
-    allowance = fields.Nested(AllowanceSchema, partial=("account",))
+    allowance = fields.Nested(AllowanceSchema, partial=("account",), missing=None)
 
     @post_load
     def make_instrument_list_api_resp(self, data, **kwargs):

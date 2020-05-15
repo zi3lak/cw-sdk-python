@@ -17,11 +17,12 @@ class Assets:
         asset_resp = json.loads(data)
         schema = AssetAPIResponseSchema()
         asset_obj = schema.load(asset_resp)
-        log(
-            "API Allowance: cost={} remaining={}".format(
-                asset_obj._allowance.cost, asset_obj._allowance.remaining
+        if asset_obj._allowance:
+            log(
+                "API Allowance: cost={} remaining={}".format(
+                    asset_obj._allowance.cost, asset_obj._allowance.remaining
+                )
             )
-        )
         asset_obj._http_response = http_resp
         return asset_obj
 
@@ -31,11 +32,12 @@ class Assets:
         asset_resp = json.loads(data)
         schema = AssetListAPIResponseSchema()
         assets_obj = schema.load(asset_resp)
-        log(
-            "API Allowance: cost={} remaining={}".format(
-                assets_obj._allowance.cost, assets_obj._allowance.remaining
+        if assets_obj._allowance:
+            log(
+                "API Allowance: cost={} remaining={}".format(
+                    assets_obj._allowance.cost, assets_obj._allowance.remaining
+                )
             )
-        )
         assets_obj._http_response = http_resp
         return assets_obj
 
@@ -72,7 +74,7 @@ class AssetSchema(Schema):
 
 class AssetAPIResponseSchema(Schema):
     result = fields.Nested(AssetSchema)
-    allowance = fields.Nested(AllowanceSchema, partial=("account",))
+    allowance = fields.Nested(AllowanceSchema, partial=("account",), missing=None)
 
     @post_load
     def make_asset(self, data, **kwargs):
@@ -81,7 +83,7 @@ class AssetAPIResponseSchema(Schema):
 
 class AssetListAPIResponseSchema(Schema):
     result = fields.Nested(AssetSchema, many=True)
-    allowance = fields.Nested(AllowanceSchema, partial=("account",))
+    allowance = fields.Nested(AllowanceSchema, partial=("account",), missing=None)
 
     @post_load
     def make_asset(self, data, **kwargs):

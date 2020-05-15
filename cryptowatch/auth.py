@@ -15,23 +15,27 @@ def read_config():
     try:
         with open(filepath, "r") as config_file:
             config = yaml.safe_load(config_file)
-            # Look for the (public) API Key
-            if not config.get("apikey") and not config.get("api_key"):
-                log("No API key seen in credential file", is_debug=True)
+            # A config_file empty or with all lines commented out will return None
+            if not config:
+                log("Your configuration file at {} is empty".format(filepath), is_debug=True)
             else:
-                api_key = config.get("apikey")
-                if api_key is None:
-                    api_key = config.get("api_key")
-            # Look for a stream (websocket) URL
-            if not config.get("stream_url"):
-                log("No stream URL seen in credential file", is_debug=True)
-            else:
-                stream_url = config.get("stream_url")
-            # Look for a REST API URL
-            if not config.get("rest_url"):
-                log("No rest URL seen in credential file", is_debug=True)
-            else:
-                rest_url = config.get("rest_url")
+                # Look for the (public) API Key
+                if not config.get("apikey") and not config.get("api_key"):
+                    log("No API key seen in credential file", is_debug=True)
+                else:
+                    api_key = config.get("apikey")
+                    if api_key is None:
+                        api_key = config.get("api_key")
+                # Look for a stream (websocket) URL
+                if not config.get("stream_url"):
+                    log("No stream URL seen in credential file", is_debug=True)
+                else:
+                    stream_url = config.get("stream_url")
+                # Look for a REST API URL
+                if not config.get("rest_url"):
+                    log("No rest URL seen in credential file", is_debug=True)
+                else:
+                    rest_url = config.get("rest_url")
     except FileNotFoundError as ex:
         log("No credential file found", is_debug=True)
     except yaml.YAMLError as ex:

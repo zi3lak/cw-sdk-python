@@ -17,11 +17,12 @@ class Exchanges:
         exchange_resp = json.loads(data)
         schema = ExchangeAPIResponseSchema()
         exchange_obj = schema.load(exchange_resp)
-        log(
-            "API Allowance: cost={} remaining={}".format(
-                exchange_obj._allowance.cost, exchange_obj._allowance.remaining
+        if exchange_obj._allowance:
+            log(
+                "API Allowance: cost={} remaining={}".format(
+                    exchange_obj._allowance.cost, exchange_obj._allowance.remaining
+                )
             )
-        )
         exchange_obj._http_response = http_resp
         return exchange_obj
 
@@ -31,11 +32,12 @@ class Exchanges:
         exchange_resp = json.loads(data)
         schema = ExchangeListAPIResponseSchema()
         exchanges_obj = schema.load(exchange_resp)
-        log(
-            "API Allowance: cost={} remaining={}".format(
-                exchanges_obj._allowance.cost, exchanges_obj._allowance.remaining
+        if exchanges_obj._allowance:
+            log(
+                "API Allowance: cost={} remaining={}".format(
+                    exchanges_obj._allowance.cost, exchanges_obj._allowance.remaining
+                )
             )
-        )
         exchanges_obj._http_response = http_resp
         return exchanges_obj
 
@@ -70,7 +72,7 @@ class ExchangeSchema(Schema):
 
 class ExchangeAPIResponseSchema(Schema):
     result = fields.Nested(ExchangeSchema)
-    allowance = fields.Nested(AllowanceSchema, partial=("account",))
+    allowance = fields.Nested(AllowanceSchema, partial=("account",), missing=None)
 
     @post_load
     def make_exchange_api_resp(self, data, **kwargs):
@@ -79,7 +81,7 @@ class ExchangeAPIResponseSchema(Schema):
 
 class ExchangeListAPIResponseSchema(Schema):
     result = fields.Nested(ExchangeSchema, many=True)
-    allowance = fields.Nested(AllowanceSchema, partial=("account",))
+    allowance = fields.Nested(AllowanceSchema, partial=("account",), missing=None)
 
     @post_load
     def make_exchange_list_api_resp(self, data, **kwargs):
