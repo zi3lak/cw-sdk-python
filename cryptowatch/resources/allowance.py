@@ -4,7 +4,7 @@ from marshmallow import Schema, fields, post_load
 class AllowanceSchema(Schema):
     cost = fields.Integer()
     remaining = fields.Integer()
-    remainingPaid = fields.Integer()
+    remainingPaid = fields.Integer(missing=0)
     upgrade = fields.Str(missing="")
     account = fields.Str(missing="")
 
@@ -14,7 +14,7 @@ class AllowanceSchema(Schema):
 
 
 class AllowanceResource:
-    def __init__(self, cost, remaining, remainingPaid, upgrade="", account=""):
+    def __init__(self, cost, remaining, remainingPaid=0, upgrade="", account=""):
         self.cost = cost
         self.remaining = remaining
         self.remaining_paid = remainingPaid
