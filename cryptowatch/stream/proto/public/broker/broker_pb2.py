@@ -11,9 +11,10 @@ from google.protobuf import symbol_database as _symbol_database
 _sym_db = _symbol_database.Default()
 
 
-from public.client import client_pb2 as public_dot_client_dot_client__pb2
-from public.broker import private_pb2 as public_dot_broker_dot_private__pb2
-from public.stream import stream_pb2 as public_dot_stream_dot_stream__pb2
+from cryptowatch.stream.proto.public.client import client_pb2 as public_dot_client_dot_client__pb2
+from cryptowatch.stream.proto.public.broker import private_pb2 as public_dot_broker_dot_private__pb2
+from cryptowatch.stream.proto.public.stream import stream_pb2 as public_dot_stream_dot_stream__pb2
+from google.protobuf import any_pb2 as google_dot_protobuf_dot_any__pb2
 
 
 DESCRIPTOR = _descriptor.FileDescriptor(
@@ -21,11 +22,61 @@ DESCRIPTOR = _descriptor.FileDescriptor(
   package='ProtobufBroker',
   syntax='proto3',
   serialized_options=None,
-  serialized_pb=b'\n\x1apublic/broker/broker.proto\x12\x0eProtobufBroker\x1a\x1apublic/client/client.proto\x1a\x1bpublic/broker/private.proto\x1a\x1apublic/stream/stream.proto\"\xf8\x02\n\x14\x42rokerSessionMessage\x12?\n\x07session\x18\x01 \x01(\x0b\x32,.ProtobufBroker.BrokerSessionMessage.SessionH\x00\x12_\n\x17\x61nonymousTradingSession\x18\x02 \x01(\x0b\x32<.ProtobufBroker.BrokerSessionMessage.AnonymousTradingSessionH\x00\x12\x10\n\x08marketId\x18\x03 \x01(\x03\x1aK\n\x07Session\x12\x0e\n\x06userId\x18\x01 \x01(\t\x12\x0f\n\x07\x65xpires\x18\x02 \x01(\x03\x12\r\n\x05token\x18\x03 \x01(\t\x12\x10\n\x08mfaToken\x18\x04 \x01(\t\x1aN\n\x17\x41nonymousTradingSession\x12\x10\n\x08\x65xchange\x18\x01 \x01(\t\x12\r\n\x05token\x18\x02 \x01(\t\x12\x12\n\nexpiration\x18\x03 \x01(\x03\x42\x0f\n\rSessionConfig\"t\n\x11PlaceOrderRequest\x12+\n\x05order\x18\x02 \x01(\x0b\x32\x1c.ProtobufBroker.PrivateOrder\x12\x32\n\x0c\x63losingOrder\x18\x03 \x01(\x0b\x32\x1c.ProtobufBroker.PrivateOrder\"P\n\x10PlaceOrderResult\x12+\n\x05order\x18\x02 \x01(\x0b\x32\x1c.ProtobufBroker.PrivateOrder\x12\x0f\n\x07orderId\x18\x01 \x01(\t\"%\n\x12\x43\x61ncelOrderRequest\x12\x0f\n\x07orderId\x18\x02 \x01(\t\"$\n\x11\x43\x61ncelOrderResult\x12\x0f\n\x07orderId\x18\x01 \x01(\t\"\x98\x01\n\x13ReplaceOrderRequest\x12\x0f\n\x07orderId\x18\x01 \x01(\t\x12\x31\n\x0breplacement\x18\x02 \x01(\x0b\x32\x1c.ProtobufBroker.PrivateOrder\x12=\n\x17replacementClosingOrder\x18\x03 \x01(\x0b\x32\x1c.ProtobufBroker.PrivateOrder\"*\n\x14\x43losePositionRequest\x12\x12\n\npositionId\x18\x02 \x01(\t\"\r\n\x0bSyncRequest\"\xf8\x02\n\rBrokerRequest\x12\n\n\x02id\x18\x01 \x01(\t\x12\x10\n\x08marketId\x18\x07 \x01(\x03\x12>\n\x11placeOrderRequest\x18\x02 \x01(\x0b\x32!.ProtobufBroker.PlaceOrderRequestH\x00\x12@\n\x12\x63\x61ncelOrderRequest\x18\x03 \x01(\x0b\x32\".ProtobufBroker.CancelOrderRequestH\x00\x12\x42\n\x13replaceOrderRequest\x18\x06 \x01(\x0b\x32#.ProtobufBroker.ReplaceOrderRequestH\x00\x12\x32\n\x0bsyncRequest\x18\x04 \x01(\x0b\x32\x1b.ProtobufBroker.SyncRequestH\x00\x12\x44\n\x14\x63losePositionRequest\x18\x05 \x01(\x0b\x32$.ProtobufBroker.ClosePositionRequestH\x00\x42\t\n\x07Request\"<\n\x0cOrdersUpdate\x12,\n\x06orders\x18\x01 \x03(\x0b\x32\x1c.ProtobufBroker.PrivateOrder\"<\n\x0cTradesUpdate\x12,\n\x06trades\x18\x01 \x03(\x0b\x32\x1c.ProtobufBroker.PrivateTrade\"E\n\x0fPositionsUpdate\x12\x32\n\tpositions\x18\x01 \x03(\x0b\x32\x1f.ProtobufBroker.PrivatePosition\"e\n\x0e\x42\x61lancesUpdate\x12*\n\x08\x62\x61lances\x18\x01 \x03(\x0b\x32\x18.ProtobufBroker.Balances\x12\'\n\x05total\x18\x02 \x03(\x0b\x32\x18.ProtobufBroker.Balances\"\xcd\x01\n\x17RequestResolutionUpdate\x12\n\n\x02id\x18\x01 \x01(\t\x12\r\n\x05\x65rror\x18\x02 \x01(\x05\x12\x0f\n\x07message\x18\x03 \x01(\t\x12<\n\x10placeOrderResult\x18\x04 \x01(\x0b\x32 .ProtobufBroker.PlaceOrderResultH\x00\x12>\n\x11\x63\x61ncelOrderResult\x18\x05 \x01(\x0b\x32!.ProtobufBroker.CancelOrderResultH\x00\x42\x08\n\x06Result\"A\n\x1c\x41nonymousSessionStatusUpdate\x12\x12\n\nexpiration\x18\x01 \x01(\x03\x12\r\n\x05token\x18\x02 \x01(\t\"d\n\x13SessionStatusUpdate\x12\x13\n\x0binitialized\x18\x01 \x01(\x08\x12\x0f\n\x07syncing\x18\x02 \x01(\x08\x12\x14\n\x0clastSyncTime\x18\x03 \x01(\x03\x12\x11\n\tsyncError\x18\x04 \x01(\x05\"\x9d\x03\n\x11PermissionsUpdate\x12\x39\n\norderTypes\x18\x01 \x03(\x0e\x32!.ProtobufBroker.PrivateOrder.TypeB\x02\x10\x00\x12\x35\n\x0c\x66undingTypes\x18\x02 \x03(\x0e\x32\x1b.ProtobufBroker.FundingTypeB\x02\x10\x00\x12?\n\nagreements\x18\x04 \x03(\x0b\x32+.ProtobufBroker.PermissionsUpdate.Agreement\x12H\n\x0eleverageLevels\x18\x06 \x01(\x0b\x32\x30.ProtobufBroker.PermissionsUpdate.LeverageLevels\x12\x1b\n\x13supportsOrderExpiry\x18\x07 \x01(\x08\x1a&\n\tAgreement\x12\x0b\n\x03key\x18\x01 \x01(\t\x12\x0c\n\x04\x62ody\x18\x02 \x01(\t\x1a+\n\x0eLeverageLevels\x12\x0b\n\x03\x62uy\x18\x01 \x03(\t\x12\x0c\n\x04sell\x18\x02 \x03(\tJ\x04\x08\x05\x10\x06R\x13\x63urrencyPairAllowed\"R\n\x17\x41PIAccessorStatusUpdate\x12\x11\n\thasAccess\x18\x01 \x01(\x08\x12\x0e\n\x06status\x18\x02 \x01(\x05\x12\x14\n\x0cstatusString\x18\x03 \x01(\t\"\xd9\x06\n\x13\x42rokerUpdateMessage\x12\x10\n\x08marketId\x18\x0b \x01(\x03\x12\x34\n\x0cordersUpdate\x18\x01 \x01(\x0b\x32\x1c.ProtobufBroker.OrdersUpdateH\x00\x12\x34\n\x0ctradesUpdate\x18\x02 \x01(\x0b\x32\x1c.ProtobufBroker.TradesUpdateH\x00\x12\x38\n\x0e\x62\x61lancesUpdate\x18\x03 \x01(\x0b\x32\x1e.ProtobufBroker.BalancesUpdateH\x00\x12:\n\x0fpositionsUpdate\x18\x08 \x01(\x0b\x32\x1f.ProtobufBroker.PositionsUpdateH\x00\x12J\n\x17requestResolutionUpdate\x18\x04 \x01(\x0b\x32\'.ProtobufBroker.RequestResolutionUpdateH\x00\x12T\n\x1c\x61nonymousSessionStatusUpdate\x18\x05 \x01(\x0b\x32,.ProtobufBroker.AnonymousSessionStatusUpdateH\x00\x12>\n\x11permissionsUpdate\x18\x06 \x01(\x0b\x32!.ProtobufBroker.PermissionsUpdateH\x00\x12\x42\n\x13sessionStatusUpdate\x18\x07 \x01(\x0b\x32#.ProtobufBroker.SessionStatusUpdateH\x00\x12J\n\x17\x61piAccessorStatusUpdate\x18\t \x01(\x0b\x32\'.ProtobufBroker.APIAccessorStatusUpdateH\x00\x12\x44\n\x14\x61uthenticationResult\x18\n \x01(\x0b\x32$.ProtobufStream.AuthenticationResultH\x00\x12@\n\x12subscriptionResult\x18\x0c \x01(\x0b\x32\".ProtobufStream.SubscriptionResultH\x00\x12J\n\x17webAuthenticationResult\x18\x0e \x01(\x0b\x32\'.ProtobufClient.WebAuthenticationResultH\x00\x42\x08\n\x06Updateb\x06proto3'
+  serialized_pb=b'\n\x1apublic/broker/broker.proto\x12\x0eProtobufBroker\x1a\x1apublic/client/client.proto\x1a\x1bpublic/broker/private.proto\x1a\x1apublic/stream/stream.proto\x1a\x19google/protobuf/any.proto\"\xf8\x02\n\x14\x42rokerSessionMessage\x12?\n\x07session\x18\x01 \x01(\x0b\x32,.ProtobufBroker.BrokerSessionMessage.SessionH\x00\x12_\n\x17\x61nonymousTradingSession\x18\x02 \x01(\x0b\x32<.ProtobufBroker.BrokerSessionMessage.AnonymousTradingSessionH\x00\x12\x10\n\x08marketId\x18\x03 \x01(\x03\x1aK\n\x07Session\x12\x0e\n\x06userId\x18\x01 \x01(\t\x12\x0f\n\x07\x65xpires\x18\x02 \x01(\x03\x12\r\n\x05token\x18\x03 \x01(\t\x12\x10\n\x08mfaToken\x18\x04 \x01(\t\x1aN\n\x17\x41nonymousTradingSession\x12\x10\n\x08\x65xchange\x18\x01 \x01(\t\x12\r\n\x05token\x18\x02 \x01(\t\x12\x12\n\nexpiration\x18\x03 \x01(\x03\x42\x0f\n\rSessionConfig\"t\n\x11PlaceOrderRequest\x12+\n\x05order\x18\x02 \x01(\x0b\x32\x1c.ProtobufBroker.PrivateOrder\x12\x32\n\x0c\x63losingOrder\x18\x03 \x01(\x0b\x32\x1c.ProtobufBroker.PrivateOrder\"P\n\x10PlaceOrderResult\x12+\n\x05order\x18\x02 \x01(\x0b\x32\x1c.ProtobufBroker.PrivateOrder\x12\x0f\n\x07orderId\x18\x01 \x01(\t\"%\n\x12\x43\x61ncelOrderRequest\x12\x0f\n\x07orderId\x18\x02 \x01(\t\"$\n\x11\x43\x61ncelOrderResult\x12\x0f\n\x07orderId\x18\x01 \x01(\t\"\x98\x01\n\x13ReplaceOrderRequest\x12\x0f\n\x07orderId\x18\x01 \x01(\t\x12\x31\n\x0breplacement\x18\x02 \x01(\x0b\x32\x1c.ProtobufBroker.PrivateOrder\x12=\n\x17replacementClosingOrder\x18\x03 \x01(\x0b\x32\x1c.ProtobufBroker.PrivateOrder\"*\n\x14\x43losePositionRequest\x12\x12\n\npositionId\x18\x02 \x01(\t\"+\n\x15SettlePositionRequest\x12\x12\n\npositionId\x18\x01 \x01(\t\"\r\n\x0bSyncRequest\"\xc0\x03\n\rBrokerRequest\x12\n\n\x02id\x18\x01 \x01(\t\x12\x10\n\x08marketId\x18\x07 \x01(\x03\x12>\n\x11placeOrderRequest\x18\x02 \x01(\x0b\x32!.ProtobufBroker.PlaceOrderRequestH\x00\x12@\n\x12\x63\x61ncelOrderRequest\x18\x03 \x01(\x0b\x32\".ProtobufBroker.CancelOrderRequestH\x00\x12\x42\n\x13replaceOrderRequest\x18\x06 \x01(\x0b\x32#.ProtobufBroker.ReplaceOrderRequestH\x00\x12\x32\n\x0bsyncRequest\x18\x04 \x01(\x0b\x32\x1b.ProtobufBroker.SyncRequestH\x00\x12\x44\n\x14\x63losePositionRequest\x18\x05 \x01(\x0b\x32$.ProtobufBroker.ClosePositionRequestH\x00\x12\x46\n\x15settlePositionRequest\x18\t \x01(\x0b\x32%.ProtobufBroker.SettlePositionRequestH\x00\x42\t\n\x07Request\"<\n\x0cOrdersUpdate\x12,\n\x06orders\x18\x01 \x03(\x0b\x32\x1c.ProtobufBroker.PrivateOrder\"<\n\x0cTradesUpdate\x12,\n\x06trades\x18\x01 \x03(\x0b\x32\x1c.ProtobufBroker.PrivateTrade\"E\n\x0fPositionsUpdate\x12\x32\n\tpositions\x18\x01 \x03(\x0b\x32\x1f.ProtobufBroker.PrivatePosition\"e\n\x0e\x42\x61lancesUpdate\x12*\n\x08\x62\x61lances\x18\x01 \x03(\x0b\x32\x18.ProtobufBroker.Balances\x12\'\n\x05total\x18\x02 \x03(\x0b\x32\x18.ProtobufBroker.Balances\"?\n\rLedgersUpdate\x12.\n\x07ledgers\x18\x01 \x03(\x0b\x32\x1d.ProtobufBroker.PrivateLedger\"\xf5\x01\n\x17RequestResolutionUpdate\x12\n\n\x02id\x18\x01 \x01(\t\x12\r\n\x05\x65rror\x18\x02 \x01(\x05\x12\x0f\n\x07message\x18\x03 \x01(\t\x12&\n\x07\x65rrorV2\x18\x06 \x01(\x0b\x32\x15.ProtobufBroker.Error\x12<\n\x10placeOrderResult\x18\x04 \x01(\x0b\x32 .ProtobufBroker.PlaceOrderResultH\x00\x12>\n\x11\x63\x61ncelOrderResult\x18\x05 \x01(\x0b\x32!.ProtobufBroker.CancelOrderResultH\x00\x42\x08\n\x06Result\"A\n\x1c\x41nonymousSessionStatusUpdate\x12\x12\n\nexpiration\x18\x01 \x01(\x03\x12\r\n\x05token\x18\x02 \x01(\t\"d\n\x13SessionStatusUpdate\x12\x13\n\x0binitialized\x18\x01 \x01(\x08\x12\x0f\n\x07syncing\x18\x02 \x01(\x08\x12\x14\n\x0clastSyncTime\x18\x03 \x01(\x03\x12\x11\n\tsyncError\x18\x04 \x01(\x05\"\x9d\x03\n\x11PermissionsUpdate\x12\x39\n\norderTypes\x18\x01 \x03(\x0e\x32!.ProtobufBroker.PrivateOrder.TypeB\x02\x10\x00\x12\x35\n\x0c\x66undingTypes\x18\x02 \x03(\x0e\x32\x1b.ProtobufBroker.FundingTypeB\x02\x10\x00\x12?\n\nagreements\x18\x04 \x03(\x0b\x32+.ProtobufBroker.PermissionsUpdate.Agreement\x12H\n\x0eleverageLevels\x18\x06 \x01(\x0b\x32\x30.ProtobufBroker.PermissionsUpdate.LeverageLevels\x12\x1b\n\x13supportsOrderExpiry\x18\x07 \x01(\x08\x1a&\n\tAgreement\x12\x0b\n\x03key\x18\x01 \x01(\t\x12\x0c\n\x04\x62ody\x18\x02 \x01(\t\x1a+\n\x0eLeverageLevels\x12\x0b\n\x03\x62uy\x18\x01 \x03(\t\x12\x0c\n\x04sell\x18\x02 \x03(\tJ\x04\x08\x05\x10\x06R\x13\x63urrencyPairAllowed\"R\n\x17\x41PIAccessorStatusUpdate\x12\x11\n\thasAccess\x18\x01 \x01(\x08\x12\x0e\n\x06status\x18\x02 \x01(\x05\x12\x14\n\x0cstatusString\x18\x03 \x01(\t\"\x91\x07\n\x13\x42rokerUpdateMessage\x12\x10\n\x08marketId\x18\x0b \x01(\x03\x12\x34\n\x0cordersUpdate\x18\x01 \x01(\x0b\x32\x1c.ProtobufBroker.OrdersUpdateH\x00\x12\x34\n\x0ctradesUpdate\x18\x02 \x01(\x0b\x32\x1c.ProtobufBroker.TradesUpdateH\x00\x12\x38\n\x0e\x62\x61lancesUpdate\x18\x03 \x01(\x0b\x32\x1e.ProtobufBroker.BalancesUpdateH\x00\x12:\n\x0fpositionsUpdate\x18\x08 \x01(\x0b\x32\x1f.ProtobufBroker.PositionsUpdateH\x00\x12\x36\n\rledgersUpdate\x18\x0f \x01(\x0b\x32\x1d.ProtobufBroker.LedgersUpdateH\x00\x12J\n\x17requestResolutionUpdate\x18\x04 \x01(\x0b\x32\'.ProtobufBroker.RequestResolutionUpdateH\x00\x12T\n\x1c\x61nonymousSessionStatusUpdate\x18\x05 \x01(\x0b\x32,.ProtobufBroker.AnonymousSessionStatusUpdateH\x00\x12>\n\x11permissionsUpdate\x18\x06 \x01(\x0b\x32!.ProtobufBroker.PermissionsUpdateH\x00\x12\x42\n\x13sessionStatusUpdate\x18\x07 \x01(\x0b\x32#.ProtobufBroker.SessionStatusUpdateH\x00\x12J\n\x17\x61piAccessorStatusUpdate\x18\t \x01(\x0b\x32\'.ProtobufBroker.APIAccessorStatusUpdateH\x00\x12\x44\n\x14\x61uthenticationResult\x18\n \x01(\x0b\x32$.ProtobufStream.AuthenticationResultH\x00\x12@\n\x12subscriptionResult\x18\x0c \x01(\x0b\x32\".ProtobufStream.SubscriptionResultH\x00\x12J\n\x17webAuthenticationResult\x18\x0e \x01(\x0b\x32\'.ProtobufClient.WebAuthenticationResultH\x00\x42\x08\n\x06Update\"\xe3\x02\n\x05\x45rror\x12.\n\x04kind\x18\x01 \x01(\x0e\x32\x1a.ProtobufBroker.Error.KindR\x04kind\x12\x12\n\x04\x63ode\x18\x02 \x01(\x04R\x04\x63ode\x12\x18\n\x07message\x18\x04 \x01(\tR\x07message\x12.\n\x07\x64\x65tails\x18\x05 \x03(\x0b\x32\x14.google.protobuf.AnyR\x07\x64\x65tails\"\xcb\x01\n\x04Kind\x12\x10\n\x0cKIND_UNKNOWN\x10\x00\x12\x11\n\rKIND_INTERNAL\x10\x01\x12\x12\n\x0eKIND_TRANSIENT\x10\x02\x12\x10\n\x0cKIND_ABORTED\x10\x03\x12\x0b\n\x07KIND_IO\x10\x04\x12\x1a\n\x16KIND_PERMISSION_DENIED\x10\x05\x12\x1a\n\x16KIND_INVALID_OPERATION\x10\x06\x12\x19\n\x15KIND_INVALID_ARGUMENT\x10\x07\x12\x18\n\x14KIND_INVALID_REQUEST\x10\x08\x62\x06proto3'
   ,
-  dependencies=[public_dot_client_dot_client__pb2.DESCRIPTOR,public_dot_broker_dot_private__pb2.DESCRIPTOR,public_dot_stream_dot_stream__pb2.DESCRIPTOR,])
+  dependencies=[public_dot_client_dot_client__pb2.DESCRIPTOR,public_dot_broker_dot_private__pb2.DESCRIPTOR,public_dot_stream_dot_stream__pb2.DESCRIPTOR,google_dot_protobuf_dot_any__pb2.DESCRIPTOR,])
 
 
+
+_ERROR_KIND = _descriptor.EnumDescriptor(
+  name='Kind',
+  full_name='ProtobufBroker.Error.Kind',
+  filename=None,
+  file=DESCRIPTOR,
+  values=[
+    _descriptor.EnumValueDescriptor(
+      name='KIND_UNKNOWN', index=0, number=0,
+      serialized_options=None,
+      type=None),
+    _descriptor.EnumValueDescriptor(
+      name='KIND_INTERNAL', index=1, number=1,
+      serialized_options=None,
+      type=None),
+    _descriptor.EnumValueDescriptor(
+      name='KIND_TRANSIENT', index=2, number=2,
+      serialized_options=None,
+      type=None),
+    _descriptor.EnumValueDescriptor(
+      name='KIND_ABORTED', index=3, number=3,
+      serialized_options=None,
+      type=None),
+    _descriptor.EnumValueDescriptor(
+      name='KIND_IO', index=4, number=4,
+      serialized_options=None,
+      type=None),
+    _descriptor.EnumValueDescriptor(
+      name='KIND_PERMISSION_DENIED', index=5, number=5,
+      serialized_options=None,
+      type=None),
+    _descriptor.EnumValueDescriptor(
+      name='KIND_INVALID_OPERATION', index=6, number=6,
+      serialized_options=None,
+      type=None),
+    _descriptor.EnumValueDescriptor(
+      name='KIND_INVALID_ARGUMENT', index=7, number=7,
+      serialized_options=None,
+      type=None),
+    _descriptor.EnumValueDescriptor(
+      name='KIND_INVALID_REQUEST', index=8, number=8,
+      serialized_options=None,
+      type=None),
+  ],
+  containing_type=None,
+  serialized_options=None,
+  serialized_start=3873,
+  serialized_end=4076,
+)
+_sym_db.RegisterEnumDescriptor(_ERROR_KIND)
 
 
 _BROKERSESSIONMESSAGE_SESSION = _descriptor.Descriptor(
@@ -75,8 +126,8 @@ _BROKERSESSIONMESSAGE_SESSION = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=336,
-  serialized_end=411,
+  serialized_start=363,
+  serialized_end=438,
 )
 
 _BROKERSESSIONMESSAGE_ANONYMOUSTRADINGSESSION = _descriptor.Descriptor(
@@ -119,8 +170,8 @@ _BROKERSESSIONMESSAGE_ANONYMOUSTRADINGSESSION = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=413,
-  serialized_end=491,
+  serialized_start=440,
+  serialized_end=518,
 )
 
 _BROKERSESSIONMESSAGE = _descriptor.Descriptor(
@@ -166,8 +217,8 @@ _BROKERSESSIONMESSAGE = _descriptor.Descriptor(
       name='SessionConfig', full_name='ProtobufBroker.BrokerSessionMessage.SessionConfig',
       index=0, containing_type=None, fields=[]),
   ],
-  serialized_start=132,
-  serialized_end=508,
+  serialized_start=159,
+  serialized_end=535,
 )
 
 
@@ -204,8 +255,8 @@ _PLACEORDERREQUEST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=510,
-  serialized_end=626,
+  serialized_start=537,
+  serialized_end=653,
 )
 
 
@@ -242,8 +293,8 @@ _PLACEORDERRESULT = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=628,
-  serialized_end=708,
+  serialized_start=655,
+  serialized_end=735,
 )
 
 
@@ -273,8 +324,8 @@ _CANCELORDERREQUEST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=710,
-  serialized_end=747,
+  serialized_start=737,
+  serialized_end=774,
 )
 
 
@@ -304,8 +355,8 @@ _CANCELORDERRESULT = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=749,
-  serialized_end=785,
+  serialized_start=776,
+  serialized_end=812,
 )
 
 
@@ -349,8 +400,8 @@ _REPLACEORDERREQUEST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=788,
-  serialized_end=940,
+  serialized_start=815,
+  serialized_end=967,
 )
 
 
@@ -380,8 +431,39 @@ _CLOSEPOSITIONREQUEST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=942,
-  serialized_end=984,
+  serialized_start=969,
+  serialized_end=1011,
+)
+
+
+_SETTLEPOSITIONREQUEST = _descriptor.Descriptor(
+  name='SettlePositionRequest',
+  full_name='ProtobufBroker.SettlePositionRequest',
+  filename=None,
+  file=DESCRIPTOR,
+  containing_type=None,
+  fields=[
+    _descriptor.FieldDescriptor(
+      name='positionId', full_name='ProtobufBroker.SettlePositionRequest.positionId', index=0,
+      number=1, type=9, cpp_type=9, label=1,
+      has_default_value=False, default_value=b"".decode('utf-8'),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR),
+  ],
+  extensions=[
+  ],
+  nested_types=[],
+  enum_types=[
+  ],
+  serialized_options=None,
+  is_extendable=False,
+  syntax='proto3',
+  extension_ranges=[],
+  oneofs=[
+  ],
+  serialized_start=1013,
+  serialized_end=1056,
 )
 
 
@@ -404,8 +486,8 @@ _SYNCREQUEST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=986,
-  serialized_end=999,
+  serialized_start=1058,
+  serialized_end=1071,
 )
 
 
@@ -465,6 +547,13 @@ _BROKERREQUEST = _descriptor.Descriptor(
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR),
+    _descriptor.FieldDescriptor(
+      name='settlePositionRequest', full_name='ProtobufBroker.BrokerRequest.settlePositionRequest', index=7,
+      number=9, type=11, cpp_type=10, label=1,
+      has_default_value=False, default_value=None,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR),
   ],
   extensions=[
   ],
@@ -480,8 +569,8 @@ _BROKERREQUEST = _descriptor.Descriptor(
       name='Request', full_name='ProtobufBroker.BrokerRequest.Request',
       index=0, containing_type=None, fields=[]),
   ],
-  serialized_start=1002,
-  serialized_end=1378,
+  serialized_start=1074,
+  serialized_end=1522,
 )
 
 
@@ -511,8 +600,8 @@ _ORDERSUPDATE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=1380,
-  serialized_end=1440,
+  serialized_start=1524,
+  serialized_end=1584,
 )
 
 
@@ -542,8 +631,8 @@ _TRADESUPDATE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=1442,
-  serialized_end=1502,
+  serialized_start=1586,
+  serialized_end=1646,
 )
 
 
@@ -573,8 +662,8 @@ _POSITIONSUPDATE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=1504,
-  serialized_end=1573,
+  serialized_start=1648,
+  serialized_end=1717,
 )
 
 
@@ -611,8 +700,39 @@ _BALANCESUPDATE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=1575,
-  serialized_end=1676,
+  serialized_start=1719,
+  serialized_end=1820,
+)
+
+
+_LEDGERSUPDATE = _descriptor.Descriptor(
+  name='LedgersUpdate',
+  full_name='ProtobufBroker.LedgersUpdate',
+  filename=None,
+  file=DESCRIPTOR,
+  containing_type=None,
+  fields=[
+    _descriptor.FieldDescriptor(
+      name='ledgers', full_name='ProtobufBroker.LedgersUpdate.ledgers', index=0,
+      number=1, type=11, cpp_type=10, label=3,
+      has_default_value=False, default_value=[],
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR),
+  ],
+  extensions=[
+  ],
+  nested_types=[],
+  enum_types=[
+  ],
+  serialized_options=None,
+  is_extendable=False,
+  syntax='proto3',
+  extension_ranges=[],
+  oneofs=[
+  ],
+  serialized_start=1822,
+  serialized_end=1885,
 )
 
 
@@ -645,14 +765,21 @@ _REQUESTRESOLUTIONUPDATE = _descriptor.Descriptor(
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR),
     _descriptor.FieldDescriptor(
-      name='placeOrderResult', full_name='ProtobufBroker.RequestResolutionUpdate.placeOrderResult', index=3,
+      name='errorV2', full_name='ProtobufBroker.RequestResolutionUpdate.errorV2', index=3,
+      number=6, type=11, cpp_type=10, label=1,
+      has_default_value=False, default_value=None,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR),
+    _descriptor.FieldDescriptor(
+      name='placeOrderResult', full_name='ProtobufBroker.RequestResolutionUpdate.placeOrderResult', index=4,
       number=4, type=11, cpp_type=10, label=1,
       has_default_value=False, default_value=None,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR),
     _descriptor.FieldDescriptor(
-      name='cancelOrderResult', full_name='ProtobufBroker.RequestResolutionUpdate.cancelOrderResult', index=4,
+      name='cancelOrderResult', full_name='ProtobufBroker.RequestResolutionUpdate.cancelOrderResult', index=5,
       number=5, type=11, cpp_type=10, label=1,
       has_default_value=False, default_value=None,
       message_type=None, enum_type=None, containing_type=None,
@@ -673,8 +800,8 @@ _REQUESTRESOLUTIONUPDATE = _descriptor.Descriptor(
       name='Result', full_name='ProtobufBroker.RequestResolutionUpdate.Result',
       index=0, containing_type=None, fields=[]),
   ],
-  serialized_start=1679,
-  serialized_end=1884,
+  serialized_start=1888,
+  serialized_end=2133,
 )
 
 
@@ -711,8 +838,8 @@ _ANONYMOUSSESSIONSTATUSUPDATE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=1886,
-  serialized_end=1951,
+  serialized_start=2135,
+  serialized_end=2200,
 )
 
 
@@ -763,8 +890,8 @@ _SESSIONSTATUSUPDATE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=1953,
-  serialized_end=2053,
+  serialized_start=2202,
+  serialized_end=2302,
 )
 
 
@@ -801,8 +928,8 @@ _PERMISSIONSUPDATE_AGREEMENT = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=2359,
-  serialized_end=2397,
+  serialized_start=2608,
+  serialized_end=2646,
 )
 
 _PERMISSIONSUPDATE_LEVERAGELEVELS = _descriptor.Descriptor(
@@ -838,8 +965,8 @@ _PERMISSIONSUPDATE_LEVERAGELEVELS = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=2399,
-  serialized_end=2442,
+  serialized_start=2648,
+  serialized_end=2691,
 )
 
 _PERMISSIONSUPDATE = _descriptor.Descriptor(
@@ -896,8 +1023,8 @@ _PERMISSIONSUPDATE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=2056,
-  serialized_end=2469,
+  serialized_start=2305,
+  serialized_end=2718,
 )
 
 
@@ -941,8 +1068,8 @@ _APIACCESSORSTATUSUPDATE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=2471,
-  serialized_end=2553,
+  serialized_start=2720,
+  serialized_end=2802,
 )
 
 
@@ -989,56 +1116,63 @@ _BROKERUPDATEMESSAGE = _descriptor.Descriptor(
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR),
     _descriptor.FieldDescriptor(
-      name='requestResolutionUpdate', full_name='ProtobufBroker.BrokerUpdateMessage.requestResolutionUpdate', index=5,
+      name='ledgersUpdate', full_name='ProtobufBroker.BrokerUpdateMessage.ledgersUpdate', index=5,
+      number=15, type=11, cpp_type=10, label=1,
+      has_default_value=False, default_value=None,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR),
+    _descriptor.FieldDescriptor(
+      name='requestResolutionUpdate', full_name='ProtobufBroker.BrokerUpdateMessage.requestResolutionUpdate', index=6,
       number=4, type=11, cpp_type=10, label=1,
       has_default_value=False, default_value=None,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR),
     _descriptor.FieldDescriptor(
-      name='anonymousSessionStatusUpdate', full_name='ProtobufBroker.BrokerUpdateMessage.anonymousSessionStatusUpdate', index=6,
+      name='anonymousSessionStatusUpdate', full_name='ProtobufBroker.BrokerUpdateMessage.anonymousSessionStatusUpdate', index=7,
       number=5, type=11, cpp_type=10, label=1,
       has_default_value=False, default_value=None,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR),
     _descriptor.FieldDescriptor(
-      name='permissionsUpdate', full_name='ProtobufBroker.BrokerUpdateMessage.permissionsUpdate', index=7,
+      name='permissionsUpdate', full_name='ProtobufBroker.BrokerUpdateMessage.permissionsUpdate', index=8,
       number=6, type=11, cpp_type=10, label=1,
       has_default_value=False, default_value=None,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR),
     _descriptor.FieldDescriptor(
-      name='sessionStatusUpdate', full_name='ProtobufBroker.BrokerUpdateMessage.sessionStatusUpdate', index=8,
+      name='sessionStatusUpdate', full_name='ProtobufBroker.BrokerUpdateMessage.sessionStatusUpdate', index=9,
       number=7, type=11, cpp_type=10, label=1,
       has_default_value=False, default_value=None,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR),
     _descriptor.FieldDescriptor(
-      name='apiAccessorStatusUpdate', full_name='ProtobufBroker.BrokerUpdateMessage.apiAccessorStatusUpdate', index=9,
+      name='apiAccessorStatusUpdate', full_name='ProtobufBroker.BrokerUpdateMessage.apiAccessorStatusUpdate', index=10,
       number=9, type=11, cpp_type=10, label=1,
       has_default_value=False, default_value=None,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR),
     _descriptor.FieldDescriptor(
-      name='authenticationResult', full_name='ProtobufBroker.BrokerUpdateMessage.authenticationResult', index=10,
+      name='authenticationResult', full_name='ProtobufBroker.BrokerUpdateMessage.authenticationResult', index=11,
       number=10, type=11, cpp_type=10, label=1,
       has_default_value=False, default_value=None,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR),
     _descriptor.FieldDescriptor(
-      name='subscriptionResult', full_name='ProtobufBroker.BrokerUpdateMessage.subscriptionResult', index=11,
+      name='subscriptionResult', full_name='ProtobufBroker.BrokerUpdateMessage.subscriptionResult', index=12,
       number=12, type=11, cpp_type=10, label=1,
       has_default_value=False, default_value=None,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR),
     _descriptor.FieldDescriptor(
-      name='webAuthenticationResult', full_name='ProtobufBroker.BrokerUpdateMessage.webAuthenticationResult', index=12,
+      name='webAuthenticationResult', full_name='ProtobufBroker.BrokerUpdateMessage.webAuthenticationResult', index=13,
       number=14, type=11, cpp_type=10, label=1,
       has_default_value=False, default_value=None,
       message_type=None, enum_type=None, containing_type=None,
@@ -1059,8 +1193,61 @@ _BROKERUPDATEMESSAGE = _descriptor.Descriptor(
       name='Update', full_name='ProtobufBroker.BrokerUpdateMessage.Update',
       index=0, containing_type=None, fields=[]),
   ],
-  serialized_start=2556,
-  serialized_end=3413,
+  serialized_start=2805,
+  serialized_end=3718,
+)
+
+
+_ERROR = _descriptor.Descriptor(
+  name='Error',
+  full_name='ProtobufBroker.Error',
+  filename=None,
+  file=DESCRIPTOR,
+  containing_type=None,
+  fields=[
+    _descriptor.FieldDescriptor(
+      name='kind', full_name='ProtobufBroker.Error.kind', index=0,
+      number=1, type=14, cpp_type=8, label=1,
+      has_default_value=False, default_value=0,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, json_name='kind', file=DESCRIPTOR),
+    _descriptor.FieldDescriptor(
+      name='code', full_name='ProtobufBroker.Error.code', index=1,
+      number=2, type=4, cpp_type=4, label=1,
+      has_default_value=False, default_value=0,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, json_name='code', file=DESCRIPTOR),
+    _descriptor.FieldDescriptor(
+      name='message', full_name='ProtobufBroker.Error.message', index=2,
+      number=4, type=9, cpp_type=9, label=1,
+      has_default_value=False, default_value=b"".decode('utf-8'),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, json_name='message', file=DESCRIPTOR),
+    _descriptor.FieldDescriptor(
+      name='details', full_name='ProtobufBroker.Error.details', index=3,
+      number=5, type=11, cpp_type=10, label=3,
+      has_default_value=False, default_value=[],
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, json_name='details', file=DESCRIPTOR),
+  ],
+  extensions=[
+  ],
+  nested_types=[],
+  enum_types=[
+    _ERROR_KIND,
+  ],
+  serialized_options=None,
+  is_extendable=False,
+  syntax='proto3',
+  extension_ranges=[],
+  oneofs=[
+  ],
+  serialized_start=3721,
+  serialized_end=4076,
 )
 
 _BROKERSESSIONMESSAGE_SESSION.containing_type = _BROKERSESSIONMESSAGE
@@ -1083,6 +1270,7 @@ _BROKERREQUEST.fields_by_name['cancelOrderRequest'].message_type = _CANCELORDERR
 _BROKERREQUEST.fields_by_name['replaceOrderRequest'].message_type = _REPLACEORDERREQUEST
 _BROKERREQUEST.fields_by_name['syncRequest'].message_type = _SYNCREQUEST
 _BROKERREQUEST.fields_by_name['closePositionRequest'].message_type = _CLOSEPOSITIONREQUEST
+_BROKERREQUEST.fields_by_name['settlePositionRequest'].message_type = _SETTLEPOSITIONREQUEST
 _BROKERREQUEST.oneofs_by_name['Request'].fields.append(
   _BROKERREQUEST.fields_by_name['placeOrderRequest'])
 _BROKERREQUEST.fields_by_name['placeOrderRequest'].containing_oneof = _BROKERREQUEST.oneofs_by_name['Request']
@@ -1098,11 +1286,16 @@ _BROKERREQUEST.fields_by_name['syncRequest'].containing_oneof = _BROKERREQUEST.o
 _BROKERREQUEST.oneofs_by_name['Request'].fields.append(
   _BROKERREQUEST.fields_by_name['closePositionRequest'])
 _BROKERREQUEST.fields_by_name['closePositionRequest'].containing_oneof = _BROKERREQUEST.oneofs_by_name['Request']
+_BROKERREQUEST.oneofs_by_name['Request'].fields.append(
+  _BROKERREQUEST.fields_by_name['settlePositionRequest'])
+_BROKERREQUEST.fields_by_name['settlePositionRequest'].containing_oneof = _BROKERREQUEST.oneofs_by_name['Request']
 _ORDERSUPDATE.fields_by_name['orders'].message_type = public_dot_broker_dot_private__pb2._PRIVATEORDER
 _TRADESUPDATE.fields_by_name['trades'].message_type = public_dot_broker_dot_private__pb2._PRIVATETRADE
 _POSITIONSUPDATE.fields_by_name['positions'].message_type = public_dot_broker_dot_private__pb2._PRIVATEPOSITION
 _BALANCESUPDATE.fields_by_name['balances'].message_type = public_dot_broker_dot_private__pb2._BALANCES
 _BALANCESUPDATE.fields_by_name['total'].message_type = public_dot_broker_dot_private__pb2._BALANCES
+_LEDGERSUPDATE.fields_by_name['ledgers'].message_type = public_dot_broker_dot_private__pb2._PRIVATELEDGER
+_REQUESTRESOLUTIONUPDATE.fields_by_name['errorV2'].message_type = _ERROR
 _REQUESTRESOLUTIONUPDATE.fields_by_name['placeOrderResult'].message_type = _PLACEORDERRESULT
 _REQUESTRESOLUTIONUPDATE.fields_by_name['cancelOrderResult'].message_type = _CANCELORDERRESULT
 _REQUESTRESOLUTIONUPDATE.oneofs_by_name['Result'].fields.append(
@@ -1121,6 +1314,7 @@ _BROKERUPDATEMESSAGE.fields_by_name['ordersUpdate'].message_type = _ORDERSUPDATE
 _BROKERUPDATEMESSAGE.fields_by_name['tradesUpdate'].message_type = _TRADESUPDATE
 _BROKERUPDATEMESSAGE.fields_by_name['balancesUpdate'].message_type = _BALANCESUPDATE
 _BROKERUPDATEMESSAGE.fields_by_name['positionsUpdate'].message_type = _POSITIONSUPDATE
+_BROKERUPDATEMESSAGE.fields_by_name['ledgersUpdate'].message_type = _LEDGERSUPDATE
 _BROKERUPDATEMESSAGE.fields_by_name['requestResolutionUpdate'].message_type = _REQUESTRESOLUTIONUPDATE
 _BROKERUPDATEMESSAGE.fields_by_name['anonymousSessionStatusUpdate'].message_type = _ANONYMOUSSESSIONSTATUSUPDATE
 _BROKERUPDATEMESSAGE.fields_by_name['permissionsUpdate'].message_type = _PERMISSIONSUPDATE
@@ -1141,6 +1335,9 @@ _BROKERUPDATEMESSAGE.fields_by_name['balancesUpdate'].containing_oneof = _BROKER
 _BROKERUPDATEMESSAGE.oneofs_by_name['Update'].fields.append(
   _BROKERUPDATEMESSAGE.fields_by_name['positionsUpdate'])
 _BROKERUPDATEMESSAGE.fields_by_name['positionsUpdate'].containing_oneof = _BROKERUPDATEMESSAGE.oneofs_by_name['Update']
+_BROKERUPDATEMESSAGE.oneofs_by_name['Update'].fields.append(
+  _BROKERUPDATEMESSAGE.fields_by_name['ledgersUpdate'])
+_BROKERUPDATEMESSAGE.fields_by_name['ledgersUpdate'].containing_oneof = _BROKERUPDATEMESSAGE.oneofs_by_name['Update']
 _BROKERUPDATEMESSAGE.oneofs_by_name['Update'].fields.append(
   _BROKERUPDATEMESSAGE.fields_by_name['requestResolutionUpdate'])
 _BROKERUPDATEMESSAGE.fields_by_name['requestResolutionUpdate'].containing_oneof = _BROKERUPDATEMESSAGE.oneofs_by_name['Update']
@@ -1165,6 +1362,9 @@ _BROKERUPDATEMESSAGE.fields_by_name['subscriptionResult'].containing_oneof = _BR
 _BROKERUPDATEMESSAGE.oneofs_by_name['Update'].fields.append(
   _BROKERUPDATEMESSAGE.fields_by_name['webAuthenticationResult'])
 _BROKERUPDATEMESSAGE.fields_by_name['webAuthenticationResult'].containing_oneof = _BROKERUPDATEMESSAGE.oneofs_by_name['Update']
+_ERROR.fields_by_name['kind'].enum_type = _ERROR_KIND
+_ERROR.fields_by_name['details'].message_type = google_dot_protobuf_dot_any__pb2._ANY
+_ERROR_KIND.containing_type = _ERROR
 DESCRIPTOR.message_types_by_name['BrokerSessionMessage'] = _BROKERSESSIONMESSAGE
 DESCRIPTOR.message_types_by_name['PlaceOrderRequest'] = _PLACEORDERREQUEST
 DESCRIPTOR.message_types_by_name['PlaceOrderResult'] = _PLACEORDERRESULT
@@ -1172,18 +1372,21 @@ DESCRIPTOR.message_types_by_name['CancelOrderRequest'] = _CANCELORDERREQUEST
 DESCRIPTOR.message_types_by_name['CancelOrderResult'] = _CANCELORDERRESULT
 DESCRIPTOR.message_types_by_name['ReplaceOrderRequest'] = _REPLACEORDERREQUEST
 DESCRIPTOR.message_types_by_name['ClosePositionRequest'] = _CLOSEPOSITIONREQUEST
+DESCRIPTOR.message_types_by_name['SettlePositionRequest'] = _SETTLEPOSITIONREQUEST
 DESCRIPTOR.message_types_by_name['SyncRequest'] = _SYNCREQUEST
 DESCRIPTOR.message_types_by_name['BrokerRequest'] = _BROKERREQUEST
 DESCRIPTOR.message_types_by_name['OrdersUpdate'] = _ORDERSUPDATE
 DESCRIPTOR.message_types_by_name['TradesUpdate'] = _TRADESUPDATE
 DESCRIPTOR.message_types_by_name['PositionsUpdate'] = _POSITIONSUPDATE
 DESCRIPTOR.message_types_by_name['BalancesUpdate'] = _BALANCESUPDATE
+DESCRIPTOR.message_types_by_name['LedgersUpdate'] = _LEDGERSUPDATE
 DESCRIPTOR.message_types_by_name['RequestResolutionUpdate'] = _REQUESTRESOLUTIONUPDATE
 DESCRIPTOR.message_types_by_name['AnonymousSessionStatusUpdate'] = _ANONYMOUSSESSIONSTATUSUPDATE
 DESCRIPTOR.message_types_by_name['SessionStatusUpdate'] = _SESSIONSTATUSUPDATE
 DESCRIPTOR.message_types_by_name['PermissionsUpdate'] = _PERMISSIONSUPDATE
 DESCRIPTOR.message_types_by_name['APIAccessorStatusUpdate'] = _APIACCESSORSTATUSUPDATE
 DESCRIPTOR.message_types_by_name['BrokerUpdateMessage'] = _BROKERUPDATEMESSAGE
+DESCRIPTOR.message_types_by_name['Error'] = _ERROR
 _sym_db.RegisterFileDescriptor(DESCRIPTOR)
 
 BrokerSessionMessage = _reflection.GeneratedProtocolMessageType('BrokerSessionMessage', (_message.Message,), {
@@ -1251,6 +1454,13 @@ ClosePositionRequest = _reflection.GeneratedProtocolMessageType('ClosePositionRe
   })
 _sym_db.RegisterMessage(ClosePositionRequest)
 
+SettlePositionRequest = _reflection.GeneratedProtocolMessageType('SettlePositionRequest', (_message.Message,), {
+  'DESCRIPTOR' : _SETTLEPOSITIONREQUEST,
+  '__module__' : 'public.broker.broker_pb2'
+  # @@protoc_insertion_point(class_scope:ProtobufBroker.SettlePositionRequest)
+  })
+_sym_db.RegisterMessage(SettlePositionRequest)
+
 SyncRequest = _reflection.GeneratedProtocolMessageType('SyncRequest', (_message.Message,), {
   'DESCRIPTOR' : _SYNCREQUEST,
   '__module__' : 'public.broker.broker_pb2'
@@ -1292,6 +1502,13 @@ BalancesUpdate = _reflection.GeneratedProtocolMessageType('BalancesUpdate', (_me
   # @@protoc_insertion_point(class_scope:ProtobufBroker.BalancesUpdate)
   })
 _sym_db.RegisterMessage(BalancesUpdate)
+
+LedgersUpdate = _reflection.GeneratedProtocolMessageType('LedgersUpdate', (_message.Message,), {
+  'DESCRIPTOR' : _LEDGERSUPDATE,
+  '__module__' : 'public.broker.broker_pb2'
+  # @@protoc_insertion_point(class_scope:ProtobufBroker.LedgersUpdate)
+  })
+_sym_db.RegisterMessage(LedgersUpdate)
 
 RequestResolutionUpdate = _reflection.GeneratedProtocolMessageType('RequestResolutionUpdate', (_message.Message,), {
   'DESCRIPTOR' : _REQUESTRESOLUTIONUPDATE,
@@ -1350,6 +1567,13 @@ BrokerUpdateMessage = _reflection.GeneratedProtocolMessageType('BrokerUpdateMess
   # @@protoc_insertion_point(class_scope:ProtobufBroker.BrokerUpdateMessage)
   })
 _sym_db.RegisterMessage(BrokerUpdateMessage)
+
+Error = _reflection.GeneratedProtocolMessageType('Error', (_message.Message,), {
+  'DESCRIPTOR' : _ERROR,
+  '__module__' : 'public.broker.broker_pb2'
+  # @@protoc_insertion_point(class_scope:ProtobufBroker.Error)
+  })
+_sym_db.RegisterMessage(Error)
 
 
 _PERMISSIONSUPDATE.fields_by_name['orderTypes']._options = None

@@ -23,7 +23,7 @@ DESCRIPTOR = _descriptor.FileDescriptor(
   package='ProtobufStream',
   syntax='proto3',
   serialized_options=None,
-  serialized_pb=b'\n\x1apublic/stream/stream.proto\x12\x0eProtobufStream\x1a\x1apublic/client/client.proto\x1a\x1bpublic/markets/market.proto\x1a\x1apublic/markets/index.proto\x1a\x19public/markets/pair.proto\x1a\x1apublic/markets/asset.proto\"\xcb\x04\n\rStreamMessage\x12\x44\n\x14\x61uthenticationResult\x18\x01 \x01(\x0b\x32$.ProtobufStream.AuthenticationResultH\x00\x12@\n\x12subscriptionResult\x18\x05 \x01(\x0b\x32\".ProtobufStream.SubscriptionResultH\x00\x12\x44\n\x14unsubscriptionResult\x18\x06 \x01(\x0b\x32$.ProtobufStream.UnsubscriptionResultH\x00\x12\x38\n\x0emissedMessages\x18\x07 \x01(\x0b\x32\x1e.ProtobufStream.MissedMessagesH\x00\x12<\n\x0cmarketUpdate\x18\x02 \x01(\x0b\x32$.ProtobufMarkets.MarketUpdateMessageH\x00\x12\x38\n\npairUpdate\x18\x03 \x01(\x0b\x32\".ProtobufMarkets.PairUpdateMessageH\x00\x12:\n\x0b\x61ssetUpdate\x18\x04 \x01(\x0b\x32#.ProtobufMarkets.AssetUpdateMessageH\x00\x12:\n\x0bindexUpdate\x18\x08 \x01(\x0b\x32#.ProtobufMarkets.IndexUpdateMessageH\x00\x12:\n\x0f\x62\x61ndwidthUpdate\x18\t \x01(\x0b\x32\x1f.ProtobufStream.BandwidthUpdateH\x00\x42\x06\n\x04\x62ody\"\xd3\x01\n\x14\x41uthenticationResult\x12;\n\x06status\x18\x01 \x01(\x0e\x32+.ProtobufStream.AuthenticationResult.Status\"~\n\x06Status\x12\x0b\n\x07UNKNOWN\x10\x00\x12\x11\n\rAUTHENTICATED\x10\x01\x12\r\n\tBAD_NONCE\x10\x02\x12\r\n\tBAD_TOKEN\x10\x03\x12\x11\n\rTOKEN_EXPIRED\x10\x04\x12\x10\n\x0cREADONLY_KEY\x10\x05\x12\x11\n\rACCESS_DENIED\x10\x06\"\xcb\x01\n\x12SubscriptionResult\x12\x16\n\nsubscribed\x18\x01 \x03(\tB\x02\x18\x01\x12.\n\x06\x66\x61iled\x18\x02 \x03(\x0b\x32\x1e.ProtobufStream.SubscribeError\x12\x32\n\x06status\x18\x03 \x01(\x0b\x32\".ProtobufStream.SubscriptionStatus\x12\x39\n\rsubscriptions\x18\x04 \x03(\x0b\x32\".ProtobufClient.ClientSubscription\"\xd1\x01\n\x14UnsubscriptionResult\x12\x18\n\x0cunsubscribed\x18\x01 \x03(\tB\x02\x18\x01\x12\x30\n\x06\x66\x61iled\x18\x02 \x03(\x0b\x32 .ProtobufStream.UnsubscribeError\x12\x32\n\x06status\x18\x03 \x01(\x0b\x32\".ProtobufStream.SubscriptionStatus\x12\x39\n\rsubscriptions\x18\x04 \x03(\x0b\x32\".ProtobufClient.ClientSubscription\"j\n\x0eSubscribeError\x12\x0f\n\x03key\x18\x01 \x01(\tB\x02\x18\x01\x12\r\n\x05\x65rror\x18\x02 \x01(\t\x12\x38\n\x0csubscription\x18\x03 \x01(\x0b\x32\".ProtobufClient.ClientSubscription\"l\n\x10UnsubscribeError\x12\x0f\n\x03key\x18\x01 \x01(\tB\x02\x18\x01\x12\r\n\x05\x65rror\x18\x02 \x01(\t\x12\x38\n\x0csubscription\x18\x03 \x01(\x0b\x32\".ProtobufClient.ClientSubscription\"a\n\x12SubscriptionStatus\x12\x10\n\x04keys\x18\x01 \x03(\tB\x02\x18\x01\x12\x39\n\rsubscriptions\x18\x02 \x03(\x0b\x32\".ProtobufClient.ClientSubscription\"+\n\x0eMissedMessages\x12\x19\n\x11numMissedMessages\x18\x01 \x01(\x03\"H\n\x0f\x42\x61ndwidthUpdate\x12\n\n\x02ok\x18\x01 \x01(\x08\x12\x16\n\x0e\x62ytesRemaining\x18\x02 \x01(\x03\x12\x11\n\tbytesUsed\x18\x03 \x01(\x03\x62\x06proto3'
+  serialized_pb=b'\n\x1apublic/stream/stream.proto\x12\x0eProtobufStream\x1a\x1apublic/client/client.proto\x1a\x1bpublic/markets/market.proto\x1a\x1apublic/markets/index.proto\x1a\x19public/markets/pair.proto\x1a\x1apublic/markets/asset.proto\"\xfb\x04\n\rStreamMessage\x12\x44\n\x14\x61uthenticationResult\x18\x01 \x01(\x0b\x32$.ProtobufStream.AuthenticationResultH\x00\x12@\n\x12subscriptionResult\x18\x05 \x01(\x0b\x32\".ProtobufStream.SubscriptionResultH\x00\x12\x44\n\x14unsubscriptionResult\x18\x06 \x01(\x0b\x32$.ProtobufStream.UnsubscriptionResultH\x00\x12\x38\n\x0emissedMessages\x18\x07 \x01(\x0b\x32\x1e.ProtobufStream.MissedMessagesH\x00\x12<\n\x0cmarketUpdate\x18\x02 \x01(\x0b\x32$.ProtobufMarkets.MarketUpdateMessageH\x00\x12\x38\n\npairUpdate\x18\x03 \x01(\x0b\x32\".ProtobufMarkets.PairUpdateMessageH\x00\x12:\n\x0b\x61ssetUpdate\x18\x04 \x01(\x0b\x32#.ProtobufMarkets.AssetUpdateMessageH\x00\x12:\n\x0bindexUpdate\x18\x08 \x01(\x0b\x32#.ProtobufMarkets.IndexUpdateMessageH\x00\x12:\n\x0f\x62\x61ndwidthUpdate\x18\t \x01(\x0b\x32\x1f.ProtobufStream.BandwidthUpdateH\x00\x12.\n\theartbeat\x18\n \x01(\x0b\x32\x19.ProtobufStream.HeartbeatH\x00\x42\x06\n\x04\x62ody\"\xec\x01\n\x14\x41uthenticationResult\x12;\n\x06status\x18\x01 \x01(\x0e\x32+.ProtobufStream.AuthenticationResult.Status\"\x96\x01\n\x06Status\x12\x0b\n\x07UNKNOWN\x10\x00\x12\x11\n\rAUTHENTICATED\x10\x01\x12\r\n\tBAD_NONCE\x10\x02\x12\r\n\tBAD_TOKEN\x10\x03\x12\x11\n\rTOKEN_EXPIRED\x10\x04\x12\x10\n\x0cREADONLY_KEY\x10\x05\x12\x11\n\rACCESS_DENIED\x10\x06\x12\x16\n\x12INVALID_PUBLIC_KEY\x10\x07\"\xcb\x01\n\x12SubscriptionResult\x12\x16\n\nsubscribed\x18\x01 \x03(\tB\x02\x18\x01\x12.\n\x06\x66\x61iled\x18\x02 \x03(\x0b\x32\x1e.ProtobufStream.SubscribeError\x12\x32\n\x06status\x18\x03 \x01(\x0b\x32\".ProtobufStream.SubscriptionStatus\x12\x39\n\rsubscriptions\x18\x04 \x03(\x0b\x32\".ProtobufClient.ClientSubscription\"\xd1\x01\n\x14UnsubscriptionResult\x12\x18\n\x0cunsubscribed\x18\x01 \x03(\tB\x02\x18\x01\x12\x30\n\x06\x66\x61iled\x18\x02 \x03(\x0b\x32 .ProtobufStream.UnsubscribeError\x12\x32\n\x06status\x18\x03 \x01(\x0b\x32\".ProtobufStream.SubscriptionStatus\x12\x39\n\rsubscriptions\x18\x04 \x03(\x0b\x32\".ProtobufClient.ClientSubscription\"j\n\x0eSubscribeError\x12\x0f\n\x03key\x18\x01 \x01(\tB\x02\x18\x01\x12\r\n\x05\x65rror\x18\x02 \x01(\t\x12\x38\n\x0csubscription\x18\x03 \x01(\x0b\x32\".ProtobufClient.ClientSubscription\"l\n\x10UnsubscribeError\x12\x0f\n\x03key\x18\x01 \x01(\tB\x02\x18\x01\x12\r\n\x05\x65rror\x18\x02 \x01(\t\x12\x38\n\x0csubscription\x18\x03 \x01(\x0b\x32\".ProtobufClient.ClientSubscription\"a\n\x12SubscriptionStatus\x12\x10\n\x04keys\x18\x01 \x03(\tB\x02\x18\x01\x12\x39\n\rsubscriptions\x18\x02 \x03(\x0b\x32\".ProtobufClient.ClientSubscription\"+\n\x0eMissedMessages\x12\x19\n\x11numMissedMessages\x18\x01 \x01(\x03\"H\n\x0f\x42\x61ndwidthUpdate\x12\n\n\x02ok\x18\x01 \x01(\x08\x12\x16\n\x0e\x62ytesRemaining\x18\x02 \x01(\x03\x12\x11\n\tbytesUsed\x18\x03 \x01(\x03\"\x19\n\tHeartbeat\x12\x0c\n\x04time\x18\x01 \x01(\x03\x62\x06proto3'
   ,
   dependencies=[public_dot_client_dot_client__pb2.DESCRIPTOR,public_dot_markets_dot_market__pb2.DESCRIPTOR,public_dot_markets_dot_index__pb2.DESCRIPTOR,public_dot_markets_dot_pair__pb2.DESCRIPTOR,public_dot_markets_dot_asset__pb2.DESCRIPTOR,])
 
@@ -63,11 +63,15 @@ _AUTHENTICATIONRESULT_STATUS = _descriptor.EnumDescriptor(
       name='ACCESS_DENIED', index=6, number=6,
       serialized_options=None,
       type=None),
+    _descriptor.EnumValueDescriptor(
+      name='INVALID_PUBLIC_KEY', index=7, number=7,
+      serialized_options=None,
+      type=None),
   ],
   containing_type=None,
   serialized_options=None,
-  serialized_start=862,
-  serialized_end=988,
+  serialized_start=911,
+  serialized_end=1061,
 )
 _sym_db.RegisterEnumDescriptor(_AUTHENTICATIONRESULT_STATUS)
 
@@ -142,6 +146,13 @@ _STREAMMESSAGE = _descriptor.Descriptor(
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR),
+    _descriptor.FieldDescriptor(
+      name='heartbeat', full_name='ProtobufStream.StreamMessage.heartbeat', index=9,
+      number=10, type=11, cpp_type=10, label=1,
+      has_default_value=False, default_value=None,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR),
   ],
   extensions=[
   ],
@@ -158,7 +169,7 @@ _STREAMMESSAGE = _descriptor.Descriptor(
       index=0, containing_type=None, fields=[]),
   ],
   serialized_start=187,
-  serialized_end=774,
+  serialized_end=822,
 )
 
 
@@ -189,8 +200,8 @@ _AUTHENTICATIONRESULT = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=777,
-  serialized_end=988,
+  serialized_start=825,
+  serialized_end=1061,
 )
 
 
@@ -241,8 +252,8 @@ _SUBSCRIPTIONRESULT = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=991,
-  serialized_end=1194,
+  serialized_start=1064,
+  serialized_end=1267,
 )
 
 
@@ -293,8 +304,8 @@ _UNSUBSCRIPTIONRESULT = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=1197,
-  serialized_end=1406,
+  serialized_start=1270,
+  serialized_end=1479,
 )
 
 
@@ -338,8 +349,8 @@ _SUBSCRIBEERROR = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=1408,
-  serialized_end=1514,
+  serialized_start=1481,
+  serialized_end=1587,
 )
 
 
@@ -383,8 +394,8 @@ _UNSUBSCRIBEERROR = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=1516,
-  serialized_end=1624,
+  serialized_start=1589,
+  serialized_end=1697,
 )
 
 
@@ -421,8 +432,8 @@ _SUBSCRIPTIONSTATUS = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=1626,
-  serialized_end=1723,
+  serialized_start=1699,
+  serialized_end=1796,
 )
 
 
@@ -452,8 +463,8 @@ _MISSEDMESSAGES = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=1725,
-  serialized_end=1768,
+  serialized_start=1798,
+  serialized_end=1841,
 )
 
 
@@ -497,8 +508,39 @@ _BANDWIDTHUPDATE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=1770,
-  serialized_end=1842,
+  serialized_start=1843,
+  serialized_end=1915,
+)
+
+
+_HEARTBEAT = _descriptor.Descriptor(
+  name='Heartbeat',
+  full_name='ProtobufStream.Heartbeat',
+  filename=None,
+  file=DESCRIPTOR,
+  containing_type=None,
+  fields=[
+    _descriptor.FieldDescriptor(
+      name='time', full_name='ProtobufStream.Heartbeat.time', index=0,
+      number=1, type=3, cpp_type=2, label=1,
+      has_default_value=False, default_value=0,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR),
+  ],
+  extensions=[
+  ],
+  nested_types=[],
+  enum_types=[
+  ],
+  serialized_options=None,
+  is_extendable=False,
+  syntax='proto3',
+  extension_ranges=[],
+  oneofs=[
+  ],
+  serialized_start=1917,
+  serialized_end=1942,
 )
 
 _STREAMMESSAGE.fields_by_name['authenticationResult'].message_type = _AUTHENTICATIONRESULT
@@ -510,6 +552,7 @@ _STREAMMESSAGE.fields_by_name['pairUpdate'].message_type = public_dot_markets_do
 _STREAMMESSAGE.fields_by_name['assetUpdate'].message_type = public_dot_markets_dot_asset__pb2._ASSETUPDATEMESSAGE
 _STREAMMESSAGE.fields_by_name['indexUpdate'].message_type = public_dot_markets_dot_index__pb2._INDEXUPDATEMESSAGE
 _STREAMMESSAGE.fields_by_name['bandwidthUpdate'].message_type = _BANDWIDTHUPDATE
+_STREAMMESSAGE.fields_by_name['heartbeat'].message_type = _HEARTBEAT
 _STREAMMESSAGE.oneofs_by_name['body'].fields.append(
   _STREAMMESSAGE.fields_by_name['authenticationResult'])
 _STREAMMESSAGE.fields_by_name['authenticationResult'].containing_oneof = _STREAMMESSAGE.oneofs_by_name['body']
@@ -537,6 +580,9 @@ _STREAMMESSAGE.fields_by_name['indexUpdate'].containing_oneof = _STREAMMESSAGE.o
 _STREAMMESSAGE.oneofs_by_name['body'].fields.append(
   _STREAMMESSAGE.fields_by_name['bandwidthUpdate'])
 _STREAMMESSAGE.fields_by_name['bandwidthUpdate'].containing_oneof = _STREAMMESSAGE.oneofs_by_name['body']
+_STREAMMESSAGE.oneofs_by_name['body'].fields.append(
+  _STREAMMESSAGE.fields_by_name['heartbeat'])
+_STREAMMESSAGE.fields_by_name['heartbeat'].containing_oneof = _STREAMMESSAGE.oneofs_by_name['body']
 _AUTHENTICATIONRESULT.fields_by_name['status'].enum_type = _AUTHENTICATIONRESULT_STATUS
 _AUTHENTICATIONRESULT_STATUS.containing_type = _AUTHENTICATIONRESULT
 _SUBSCRIPTIONRESULT.fields_by_name['failed'].message_type = _SUBSCRIBEERROR
@@ -557,6 +603,7 @@ DESCRIPTOR.message_types_by_name['UnsubscribeError'] = _UNSUBSCRIBEERROR
 DESCRIPTOR.message_types_by_name['SubscriptionStatus'] = _SUBSCRIPTIONSTATUS
 DESCRIPTOR.message_types_by_name['MissedMessages'] = _MISSEDMESSAGES
 DESCRIPTOR.message_types_by_name['BandwidthUpdate'] = _BANDWIDTHUPDATE
+DESCRIPTOR.message_types_by_name['Heartbeat'] = _HEARTBEAT
 _sym_db.RegisterFileDescriptor(DESCRIPTOR)
 
 StreamMessage = _reflection.GeneratedProtocolMessageType('StreamMessage', (_message.Message,), {
@@ -621,6 +668,13 @@ BandwidthUpdate = _reflection.GeneratedProtocolMessageType('BandwidthUpdate', (_
   # @@protoc_insertion_point(class_scope:ProtobufStream.BandwidthUpdate)
   })
 _sym_db.RegisterMessage(BandwidthUpdate)
+
+Heartbeat = _reflection.GeneratedProtocolMessageType('Heartbeat', (_message.Message,), {
+  'DESCRIPTOR' : _HEARTBEAT,
+  '__module__' : 'public.stream.stream_pb2'
+  # @@protoc_insertion_point(class_scope:ProtobufStream.Heartbeat)
+  })
+_sym_db.RegisterMessage(Heartbeat)
 
 
 _SUBSCRIPTIONRESULT.fields_by_name['subscribed']._options = None

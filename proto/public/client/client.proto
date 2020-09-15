@@ -64,11 +64,13 @@ message StreamSubscription {
 message UserPushSubscription {
   message TriggeredHandlers {}
   message Achievements {}
+  message BalanceUpdate {}
 
   oneof body {
     // receive websocket pushes from trigger
     TriggeredHandlers triggered_handlers = 1;
     Achievements achievements = 2;
+    BalanceUpdate balance_update = 3;
   }
 }
 
@@ -117,9 +119,14 @@ message ClientSessionMessage {
     int64 expiration = 3;
   }
 
+  message AnonymousUserSession {
+    string token = 1; // expected to be a user.AnonToken
+  }
+
   oneof SessionConfig {
     Session session = 1;
     AnonymousTradingSession anonymousTradingSession = 2;
+    AnonymousUserSession anonymousUserSession = 4;
   }
 
   ClientIdentificationMessage identification = 3;

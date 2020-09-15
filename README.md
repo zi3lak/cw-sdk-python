@@ -150,7 +150,7 @@ import cryptowatch as cw
 cw.api_key = "123"
 
 # Subscribe to resources (https://docs.cryptowat.ch/websocket-api/data-subscriptions#resources)
-cw.stream.subscriptions = ["markets:*:ohlc"]
+cw.stream.subscriptions = ["markets:*:trades"]
 
 # What to do on each trade update
 def handle_trades_update(trade_update):
@@ -201,7 +201,7 @@ import cryptowatch as cw
 cw.api_key = "123"
 
 # Subscribe to resources (https://docs.cryptowat.ch/websocket-api/data-subscriptions#resources)
-cw.stream.subscriptions = ["markets:*:ohlc"]
+cw.stream.subscriptions = ["markets:*:trades"]
 
 # What to do on each trade update
 def handle_trades_update(trade_update):

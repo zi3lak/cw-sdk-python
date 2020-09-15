@@ -18,7 +18,7 @@ DESCRIPTOR = _descriptor.FileDescriptor(
   package='ProtobufClient',
   syntax='proto3',
   serialized_options=None,
-  serialized_pb=b'\n\x1apublic/client/client.proto\x12\x0eProtobufClient\"\xad\x03\n\rClientMessage\x12I\n\x0eidentification\x18\x01 \x01(\x0b\x32+.ProtobufClient.ClientIdentificationMessageB\x02\x18\x01H\x00\x12;\n\tsubscribe\x18\x02 \x01(\x0b\x32&.ProtobufClient.ClientSubscribeMessageH\x00\x12?\n\x0bunsubscribe\x18\x03 \x01(\x0b\x32(.ProtobufClient.ClientUnsubscribeMessageH\x00\x12\x45\n\x11webAuthentication\x18\x04 \x01(\x0b\x32(.ProtobufClient.WebAuthenticationMessageH\x00\x12\x45\n\x11\x61piAuthentication\x18\x05 \x01(\x0b\x32(.ProtobufClient.APIAuthenticationMessageH\x00\x12=\n\rclientSession\x18\x06 \x01(\x0b\x32$.ProtobufClient.ClientSessionMessageH\x00\x42\x06\n\x04\x62ody\"\xc3\x01\n\x1b\x43lientIdentificationMessage\x12\x11\n\tuseragent\x18\x01 \x01(\t\x12\x10\n\x08revision\x18\x02 \x01(\t\x12\x13\n\x0bintegration\x18\x03 \x01(\t\x12\x0e\n\x06locale\x18\x04 \x01(\t\x12\x19\n\rsubscriptions\x18\x05 \x03(\tB\x02\x18\x01\x12?\n\x13\x63lientSubscriptions\x18\x06 \x03(\x0b\x32\".ProtobufClient.ClientSubscription\"\x92\x01\n\x18WebAuthenticationMessage\x12\x43\n\x0eidentification\x18\x01 \x01(\x0b\x32+.ProtobufClient.ClientIdentificationMessage\x12\r\n\x05token\x18\x02 \x01(\t\x12\r\n\x05nonce\x18\x03 \x01(\t\x12\x13\n\x0b\x61\x63\x63\x65ss_list\x18\x04 \x03(\t\"\xaa\x01\n\x17WebAuthenticationResult\x12>\n\x06status\x18\x01 \x01(\x0e\x32..ProtobufClient.WebAuthenticationResult.Status\"O\n\x06Status\x12\x0b\n\x07UNKNOWN\x10\x00\x12\x11\n\rAUTHENTICATED\x10\x01\x12\x13\n\x0fINVALID_SESSION\x10\x02\x12\x10\n\x0cMFA_REQUIRED\x10\x03\"d\n\x10TradeSessionAuth\x12\x0f\n\x07\x61pi_key\x18\x01 \x01(\t\x12\x12\n\napi_secret\x18\x02 \x01(\t\x12\x13\n\x0b\x63ustomer_id\x18\x03 \x01(\t\x12\x16\n\x0ekey_passphrase\x18\x04 \x01(\t\"U\n\x11TradeSubscription\x12\x10\n\x08marketId\x18\x01 \x01(\t\x12.\n\x04\x61uth\x18\x02 \x01(\x0b\x32 .ProtobufClient.TradeSessionAuth\"&\n\x12StreamSubscription\x12\x10\n\x08resource\x18\x01 \x01(\t\"\xe4\x01\n\x14UserPushSubscription\x12T\n\x12triggered_handlers\x18\x01 \x01(\x0b\x32\x36.ProtobufClient.UserPushSubscription.TriggeredHandlersH\x00\x12I\n\x0c\x61\x63hievements\x18\x02 \x01(\x0b\x32\x31.ProtobufClient.UserPushSubscription.AchievementsH\x00\x1a\x13\n\x11TriggeredHandlers\x1a\x0e\n\x0c\x41\x63hievementsB\x06\n\x04\x62ody\"\x15\n\x13TriggerSubscription\"\xb1\x02\n\x12\x43lientSubscription\x12\x41\n\x13stream_subscription\x18\x01 \x01(\x0b\x32\".ProtobufClient.StreamSubscriptionH\x00\x12?\n\x12trade_subscription\x18\x02 \x01(\x0b\x32!.ProtobufClient.TradeSubscriptionH\x00\x12G\n\x14trigger_subscription\x18\x03 \x01(\x0b\x32#.ProtobufClient.TriggerSubscriptionB\x02\x18\x01H\x00\x12\x46\n\x16user_push_subscription\x18\x04 \x01(\x0b\x32$.ProtobufClient.UserPushSubscriptionH\x00\x42\x06\n\x04\x62ody\"\xdb\x02\n\x18\x41PIAuthenticationMessage\x12\r\n\x05token\x18\x01 \x01(\t\x12\r\n\x05nonce\x18\x02 \x01(\t\x12\x0f\n\x07\x61pi_key\x18\x03 \x01(\t\x12?\n\x06source\x18\x04 \x01(\x0e\x32/.ProtobufClient.APIAuthenticationMessage.Source\x12\x0f\n\x07version\x18\x05 \x01(\t\x12\x19\n\rsubscriptions\x18\x06 \x03(\tB\x02\x18\x01\x12@\n\x14\x63lient_subscriptions\x18\x07 \x03(\x0b\x32\".ProtobufClient.ClientSubscription\"a\n\x06Source\x12\x0b\n\x07UNKNOWN\x10\x00\x12\x0e\n\nGOLANG_SDK\x10\x01\x12\x12\n\x0eJAVASCRIPT_SDK\x10\x02\x12\x0c\n\x08NODE_SDK\x10\x03\x12\x0c\n\x08RUST_SDK\x10\x05\x12\n\n\x06\x43W_WEB\x10\x04\"\xab\x03\n\x14\x43lientSessionMessage\x12?\n\x07session\x18\x01 \x01(\x0b\x32,.ProtobufClient.ClientSessionMessage.SessionH\x00\x12_\n\x17\x61nonymousTradingSession\x18\x02 \x01(\x0b\x32<.ProtobufClient.ClientSessionMessage.AnonymousTradingSessionH\x00\x12\x43\n\x0eidentification\x18\x03 \x01(\x0b\x32+.ProtobufClient.ClientIdentificationMessage\x1aK\n\x07Session\x12\x0e\n\x06userId\x18\x01 \x01(\t\x12\x0f\n\x07\x65xpires\x18\x02 \x01(\x03\x12\r\n\x05token\x18\x03 \x01(\t\x12\x10\n\x08mfaToken\x18\x04 \x01(\t\x1aN\n\x17\x41nonymousTradingSession\x12\x10\n\x08\x65xchange\x18\x01 \x01(\t\x12\r\n\x05token\x18\x02 \x01(\t\x12\x12\n\nexpiration\x18\x03 \x01(\x03\x42\x0f\n\rSessionConfig\"q\n\x16\x43lientSubscribeMessage\x12\x1c\n\x10subscriptionKeys\x18\x01 \x03(\tB\x02\x18\x01\x12\x39\n\rsubscriptions\x18\x02 \x03(\x0b\x32\".ProtobufClient.ClientSubscription\"s\n\x18\x43lientUnsubscribeMessage\x12\x1c\n\x10subscriptionKeys\x18\x01 \x03(\tB\x02\x18\x01\x12\x39\n\rsubscriptions\x18\x02 \x03(\x0b\x32\".ProtobufClient.ClientSubscriptionb\x06proto3'
+  serialized_pb=b'\n\x1apublic/client/client.proto\x12\x0eProtobufClient\"\xad\x03\n\rClientMessage\x12I\n\x0eidentification\x18\x01 \x01(\x0b\x32+.ProtobufClient.ClientIdentificationMessageB\x02\x18\x01H\x00\x12;\n\tsubscribe\x18\x02 \x01(\x0b\x32&.ProtobufClient.ClientSubscribeMessageH\x00\x12?\n\x0bunsubscribe\x18\x03 \x01(\x0b\x32(.ProtobufClient.ClientUnsubscribeMessageH\x00\x12\x45\n\x11webAuthentication\x18\x04 \x01(\x0b\x32(.ProtobufClient.WebAuthenticationMessageH\x00\x12\x45\n\x11\x61piAuthentication\x18\x05 \x01(\x0b\x32(.ProtobufClient.APIAuthenticationMessageH\x00\x12=\n\rclientSession\x18\x06 \x01(\x0b\x32$.ProtobufClient.ClientSessionMessageH\x00\x42\x06\n\x04\x62ody\"\xc3\x01\n\x1b\x43lientIdentificationMessage\x12\x11\n\tuseragent\x18\x01 \x01(\t\x12\x10\n\x08revision\x18\x02 \x01(\t\x12\x13\n\x0bintegration\x18\x03 \x01(\t\x12\x0e\n\x06locale\x18\x04 \x01(\t\x12\x19\n\rsubscriptions\x18\x05 \x03(\tB\x02\x18\x01\x12?\n\x13\x63lientSubscriptions\x18\x06 \x03(\x0b\x32\".ProtobufClient.ClientSubscription\"\x92\x01\n\x18WebAuthenticationMessage\x12\x43\n\x0eidentification\x18\x01 \x01(\x0b\x32+.ProtobufClient.ClientIdentificationMessage\x12\r\n\x05token\x18\x02 \x01(\t\x12\r\n\x05nonce\x18\x03 \x01(\t\x12\x13\n\x0b\x61\x63\x63\x65ss_list\x18\x04 \x03(\t\"\xaa\x01\n\x17WebAuthenticationResult\x12>\n\x06status\x18\x01 \x01(\x0e\x32..ProtobufClient.WebAuthenticationResult.Status\"O\n\x06Status\x12\x0b\n\x07UNKNOWN\x10\x00\x12\x11\n\rAUTHENTICATED\x10\x01\x12\x13\n\x0fINVALID_SESSION\x10\x02\x12\x10\n\x0cMFA_REQUIRED\x10\x03\"d\n\x10TradeSessionAuth\x12\x0f\n\x07\x61pi_key\x18\x01 \x01(\t\x12\x12\n\napi_secret\x18\x02 \x01(\t\x12\x13\n\x0b\x63ustomer_id\x18\x03 \x01(\t\x12\x16\n\x0ekey_passphrase\x18\x04 \x01(\t\"U\n\x11TradeSubscription\x12\x10\n\x08marketId\x18\x01 \x01(\t\x12.\n\x04\x61uth\x18\x02 \x01(\x0b\x32 .ProtobufClient.TradeSessionAuth\"&\n\x12StreamSubscription\x12\x10\n\x08resource\x18\x01 \x01(\t\"\xc3\x02\n\x14UserPushSubscription\x12T\n\x12triggered_handlers\x18\x01 \x01(\x0b\x32\x36.ProtobufClient.UserPushSubscription.TriggeredHandlersH\x00\x12I\n\x0c\x61\x63hievements\x18\x02 \x01(\x0b\x32\x31.ProtobufClient.UserPushSubscription.AchievementsH\x00\x12L\n\x0e\x62\x61lance_update\x18\x03 \x01(\x0b\x32\x32.ProtobufClient.UserPushSubscription.BalanceUpdateH\x00\x1a\x13\n\x11TriggeredHandlers\x1a\x0e\n\x0c\x41\x63hievements\x1a\x0f\n\rBalanceUpdateB\x06\n\x04\x62ody\"\x15\n\x13TriggerSubscription\"\xb1\x02\n\x12\x43lientSubscription\x12\x41\n\x13stream_subscription\x18\x01 \x01(\x0b\x32\".ProtobufClient.StreamSubscriptionH\x00\x12?\n\x12trade_subscription\x18\x02 \x01(\x0b\x32!.ProtobufClient.TradeSubscriptionH\x00\x12G\n\x14trigger_subscription\x18\x03 \x01(\x0b\x32#.ProtobufClient.TriggerSubscriptionB\x02\x18\x01H\x00\x12\x46\n\x16user_push_subscription\x18\x04 \x01(\x0b\x32$.ProtobufClient.UserPushSubscriptionH\x00\x42\x06\n\x04\x62ody\"\xdb\x02\n\x18\x41PIAuthenticationMessage\x12\r\n\x05token\x18\x01 \x01(\t\x12\r\n\x05nonce\x18\x02 \x01(\t\x12\x0f\n\x07\x61pi_key\x18\x03 \x01(\t\x12?\n\x06source\x18\x04 \x01(\x0e\x32/.ProtobufClient.APIAuthenticationMessage.Source\x12\x0f\n\x07version\x18\x05 \x01(\t\x12\x19\n\rsubscriptions\x18\x06 \x03(\tB\x02\x18\x01\x12@\n\x14\x63lient_subscriptions\x18\x07 \x03(\x0b\x32\".ProtobufClient.ClientSubscription\"a\n\x06Source\x12\x0b\n\x07UNKNOWN\x10\x00\x12\x0e\n\nGOLANG_SDK\x10\x01\x12\x12\n\x0eJAVASCRIPT_SDK\x10\x02\x12\x0c\n\x08NODE_SDK\x10\x03\x12\x0c\n\x08RUST_SDK\x10\x05\x12\n\n\x06\x43W_WEB\x10\x04\"\xad\x04\n\x14\x43lientSessionMessage\x12?\n\x07session\x18\x01 \x01(\x0b\x32,.ProtobufClient.ClientSessionMessage.SessionH\x00\x12_\n\x17\x61nonymousTradingSession\x18\x02 \x01(\x0b\x32<.ProtobufClient.ClientSessionMessage.AnonymousTradingSessionH\x00\x12Y\n\x14\x61nonymousUserSession\x18\x04 \x01(\x0b\x32\x39.ProtobufClient.ClientSessionMessage.AnonymousUserSessionH\x00\x12\x43\n\x0eidentification\x18\x03 \x01(\x0b\x32+.ProtobufClient.ClientIdentificationMessage\x1aK\n\x07Session\x12\x0e\n\x06userId\x18\x01 \x01(\t\x12\x0f\n\x07\x65xpires\x18\x02 \x01(\x03\x12\r\n\x05token\x18\x03 \x01(\t\x12\x10\n\x08mfaToken\x18\x04 \x01(\t\x1aN\n\x17\x41nonymousTradingSession\x12\x10\n\x08\x65xchange\x18\x01 \x01(\t\x12\r\n\x05token\x18\x02 \x01(\t\x12\x12\n\nexpiration\x18\x03 \x01(\x03\x1a%\n\x14\x41nonymousUserSession\x12\r\n\x05token\x18\x01 \x01(\tB\x0f\n\rSessionConfig\"q\n\x16\x43lientSubscribeMessage\x12\x1c\n\x10subscriptionKeys\x18\x01 \x03(\tB\x02\x18\x01\x12\x39\n\rsubscriptions\x18\x02 \x03(\x0b\x32\".ProtobufClient.ClientSubscription\"s\n\x18\x43lientUnsubscribeMessage\x12\x1c\n\x10subscriptionKeys\x18\x01 \x03(\tB\x02\x18\x01\x12\x39\n\rsubscriptions\x18\x02 \x03(\x0b\x32\".ProtobufClient.ClientSubscriptionb\x06proto3'
 )
 
 
@@ -86,8 +86,8 @@ _APIAUTHENTICATIONMESSAGE_SOURCE = _descriptor.EnumDescriptor(
   ],
   containing_type=None,
   serialized_options=None,
-  serialized_start=2040,
-  serialized_end=2137,
+  serialized_start=2135,
+  serialized_end=2232,
 )
 _sym_db.RegisterEnumDescriptor(_APIAUTHENTICATIONMESSAGE_SOURCE)
 
@@ -451,8 +451,8 @@ _USERPUSHSUBSCRIPTION_TRIGGEREDHANDLERS = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=1413,
-  serialized_end=1432,
+  serialized_start=1491,
+  serialized_end=1510,
 )
 
 _USERPUSHSUBSCRIPTION_ACHIEVEMENTS = _descriptor.Descriptor(
@@ -474,8 +474,31 @@ _USERPUSHSUBSCRIPTION_ACHIEVEMENTS = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=1434,
-  serialized_end=1448,
+  serialized_start=1512,
+  serialized_end=1526,
+)
+
+_USERPUSHSUBSCRIPTION_BALANCEUPDATE = _descriptor.Descriptor(
+  name='BalanceUpdate',
+  full_name='ProtobufClient.UserPushSubscription.BalanceUpdate',
+  filename=None,
+  file=DESCRIPTOR,
+  containing_type=None,
+  fields=[
+  ],
+  extensions=[
+  ],
+  nested_types=[],
+  enum_types=[
+  ],
+  serialized_options=None,
+  is_extendable=False,
+  syntax='proto3',
+  extension_ranges=[],
+  oneofs=[
+  ],
+  serialized_start=1528,
+  serialized_end=1543,
 )
 
 _USERPUSHSUBSCRIPTION = _descriptor.Descriptor(
@@ -499,10 +522,17 @@ _USERPUSHSUBSCRIPTION = _descriptor.Descriptor(
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR),
+    _descriptor.FieldDescriptor(
+      name='balance_update', full_name='ProtobufClient.UserPushSubscription.balance_update', index=2,
+      number=3, type=11, cpp_type=10, label=1,
+      has_default_value=False, default_value=None,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR),
   ],
   extensions=[
   ],
-  nested_types=[_USERPUSHSUBSCRIPTION_TRIGGEREDHANDLERS, _USERPUSHSUBSCRIPTION_ACHIEVEMENTS, ],
+  nested_types=[_USERPUSHSUBSCRIPTION_TRIGGEREDHANDLERS, _USERPUSHSUBSCRIPTION_ACHIEVEMENTS, _USERPUSHSUBSCRIPTION_BALANCEUPDATE, ],
   enum_types=[
   ],
   serialized_options=None,
@@ -515,7 +545,7 @@ _USERPUSHSUBSCRIPTION = _descriptor.Descriptor(
       index=0, containing_type=None, fields=[]),
   ],
   serialized_start=1228,
-  serialized_end=1456,
+  serialized_end=1551,
 )
 
 
@@ -538,8 +568,8 @@ _TRIGGERSUBSCRIPTION = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=1458,
-  serialized_end=1479,
+  serialized_start=1553,
+  serialized_end=1574,
 )
 
 
@@ -593,8 +623,8 @@ _CLIENTSUBSCRIPTION = _descriptor.Descriptor(
       name='body', full_name='ProtobufClient.ClientSubscription.body',
       index=0, containing_type=None, fields=[]),
   ],
-  serialized_start=1482,
-  serialized_end=1787,
+  serialized_start=1577,
+  serialized_end=1882,
 )
 
 
@@ -667,8 +697,8 @@ _APIAUTHENTICATIONMESSAGE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=1790,
-  serialized_end=2137,
+  serialized_start=1885,
+  serialized_end=2232,
 )
 
 
@@ -719,8 +749,8 @@ _CLIENTSESSIONMESSAGE_SESSION = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=2395,
-  serialized_end=2470,
+  serialized_start=2581,
+  serialized_end=2656,
 )
 
 _CLIENTSESSIONMESSAGE_ANONYMOUSTRADINGSESSION = _descriptor.Descriptor(
@@ -763,8 +793,38 @@ _CLIENTSESSIONMESSAGE_ANONYMOUSTRADINGSESSION = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=2472,
-  serialized_end=2550,
+  serialized_start=2658,
+  serialized_end=2736,
+)
+
+_CLIENTSESSIONMESSAGE_ANONYMOUSUSERSESSION = _descriptor.Descriptor(
+  name='AnonymousUserSession',
+  full_name='ProtobufClient.ClientSessionMessage.AnonymousUserSession',
+  filename=None,
+  file=DESCRIPTOR,
+  containing_type=None,
+  fields=[
+    _descriptor.FieldDescriptor(
+      name='token', full_name='ProtobufClient.ClientSessionMessage.AnonymousUserSession.token', index=0,
+      number=1, type=9, cpp_type=9, label=1,
+      has_default_value=False, default_value=b"".decode('utf-8'),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR),
+  ],
+  extensions=[
+  ],
+  nested_types=[],
+  enum_types=[
+  ],
+  serialized_options=None,
+  is_extendable=False,
+  syntax='proto3',
+  extension_ranges=[],
+  oneofs=[
+  ],
+  serialized_start=2738,
+  serialized_end=2775,
 )
 
 _CLIENTSESSIONMESSAGE = _descriptor.Descriptor(
@@ -789,7 +849,14 @@ _CLIENTSESSIONMESSAGE = _descriptor.Descriptor(
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR),
     _descriptor.FieldDescriptor(
-      name='identification', full_name='ProtobufClient.ClientSessionMessage.identification', index=2,
+      name='anonymousUserSession', full_name='ProtobufClient.ClientSessionMessage.anonymousUserSession', index=2,
+      number=4, type=11, cpp_type=10, label=1,
+      has_default_value=False, default_value=None,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR),
+    _descriptor.FieldDescriptor(
+      name='identification', full_name='ProtobufClient.ClientSessionMessage.identification', index=3,
       number=3, type=11, cpp_type=10, label=1,
       has_default_value=False, default_value=None,
       message_type=None, enum_type=None, containing_type=None,
@@ -798,7 +865,7 @@ _CLIENTSESSIONMESSAGE = _descriptor.Descriptor(
   ],
   extensions=[
   ],
-  nested_types=[_CLIENTSESSIONMESSAGE_SESSION, _CLIENTSESSIONMESSAGE_ANONYMOUSTRADINGSESSION, ],
+  nested_types=[_CLIENTSESSIONMESSAGE_SESSION, _CLIENTSESSIONMESSAGE_ANONYMOUSTRADINGSESSION, _CLIENTSESSIONMESSAGE_ANONYMOUSUSERSESSION, ],
   enum_types=[
   ],
   serialized_options=None,
@@ -810,8 +877,8 @@ _CLIENTSESSIONMESSAGE = _descriptor.Descriptor(
       name='SessionConfig', full_name='ProtobufClient.ClientSessionMessage.SessionConfig',
       index=0, containing_type=None, fields=[]),
   ],
-  serialized_start=2140,
-  serialized_end=2567,
+  serialized_start=2235,
+  serialized_end=2792,
 )
 
 
@@ -848,8 +915,8 @@ _CLIENTSUBSCRIBEMESSAGE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=2569,
-  serialized_end=2682,
+  serialized_start=2794,
+  serialized_end=2907,
 )
 
 
@@ -886,8 +953,8 @@ _CLIENTUNSUBSCRIBEMESSAGE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=2684,
-  serialized_end=2799,
+  serialized_start=2909,
+  serialized_end=3024,
 )
 
 _CLIENTMESSAGE.fields_by_name['identification'].message_type = _CLIENTIDENTIFICATIONMESSAGE
@@ -921,14 +988,19 @@ _WEBAUTHENTICATIONRESULT_STATUS.containing_type = _WEBAUTHENTICATIONRESULT
 _TRADESUBSCRIPTION.fields_by_name['auth'].message_type = _TRADESESSIONAUTH
 _USERPUSHSUBSCRIPTION_TRIGGEREDHANDLERS.containing_type = _USERPUSHSUBSCRIPTION
 _USERPUSHSUBSCRIPTION_ACHIEVEMENTS.containing_type = _USERPUSHSUBSCRIPTION
+_USERPUSHSUBSCRIPTION_BALANCEUPDATE.containing_type = _USERPUSHSUBSCRIPTION
 _USERPUSHSUBSCRIPTION.fields_by_name['triggered_handlers'].message_type = _USERPUSHSUBSCRIPTION_TRIGGEREDHANDLERS
 _USERPUSHSUBSCRIPTION.fields_by_name['achievements'].message_type = _USERPUSHSUBSCRIPTION_ACHIEVEMENTS
+_USERPUSHSUBSCRIPTION.fields_by_name['balance_update'].message_type = _USERPUSHSUBSCRIPTION_BALANCEUPDATE
 _USERPUSHSUBSCRIPTION.oneofs_by_name['body'].fields.append(
   _USERPUSHSUBSCRIPTION.fields_by_name['triggered_handlers'])
 _USERPUSHSUBSCRIPTION.fields_by_name['triggered_handlers'].containing_oneof = _USERPUSHSUBSCRIPTION.oneofs_by_name['body']
 _USERPUSHSUBSCRIPTION.oneofs_by_name['body'].fields.append(
   _USERPUSHSUBSCRIPTION.fields_by_name['achievements'])
 _USERPUSHSUBSCRIPTION.fields_by_name['achievements'].containing_oneof = _USERPUSHSUBSCRIPTION.oneofs_by_name['body']
+_USERPUSHSUBSCRIPTION.oneofs_by_name['body'].fields.append(
+  _USERPUSHSUBSCRIPTION.fields_by_name['balance_update'])
+_USERPUSHSUBSCRIPTION.fields_by_name['balance_update'].containing_oneof = _USERPUSHSUBSCRIPTION.oneofs_by_name['body']
 _CLIENTSUBSCRIPTION.fields_by_name['stream_subscription'].message_type = _STREAMSUBSCRIPTION
 _CLIENTSUBSCRIPTION.fields_by_name['trade_subscription'].message_type = _TRADESUBSCRIPTION
 _CLIENTSUBSCRIPTION.fields_by_name['trigger_subscription'].message_type = _TRIGGERSUBSCRIPTION
@@ -950,8 +1022,10 @@ _APIAUTHENTICATIONMESSAGE.fields_by_name['client_subscriptions'].message_type = 
 _APIAUTHENTICATIONMESSAGE_SOURCE.containing_type = _APIAUTHENTICATIONMESSAGE
 _CLIENTSESSIONMESSAGE_SESSION.containing_type = _CLIENTSESSIONMESSAGE
 _CLIENTSESSIONMESSAGE_ANONYMOUSTRADINGSESSION.containing_type = _CLIENTSESSIONMESSAGE
+_CLIENTSESSIONMESSAGE_ANONYMOUSUSERSESSION.containing_type = _CLIENTSESSIONMESSAGE
 _CLIENTSESSIONMESSAGE.fields_by_name['session'].message_type = _CLIENTSESSIONMESSAGE_SESSION
 _CLIENTSESSIONMESSAGE.fields_by_name['anonymousTradingSession'].message_type = _CLIENTSESSIONMESSAGE_ANONYMOUSTRADINGSESSION
+_CLIENTSESSIONMESSAGE.fields_by_name['anonymousUserSession'].message_type = _CLIENTSESSIONMESSAGE_ANONYMOUSUSERSESSION
 _CLIENTSESSIONMESSAGE.fields_by_name['identification'].message_type = _CLIENTIDENTIFICATIONMESSAGE
 _CLIENTSESSIONMESSAGE.oneofs_by_name['SessionConfig'].fields.append(
   _CLIENTSESSIONMESSAGE.fields_by_name['session'])
@@ -959,6 +1033,9 @@ _CLIENTSESSIONMESSAGE.fields_by_name['session'].containing_oneof = _CLIENTSESSIO
 _CLIENTSESSIONMESSAGE.oneofs_by_name['SessionConfig'].fields.append(
   _CLIENTSESSIONMESSAGE.fields_by_name['anonymousTradingSession'])
 _CLIENTSESSIONMESSAGE.fields_by_name['anonymousTradingSession'].containing_oneof = _CLIENTSESSIONMESSAGE.oneofs_by_name['SessionConfig']
+_CLIENTSESSIONMESSAGE.oneofs_by_name['SessionConfig'].fields.append(
+  _CLIENTSESSIONMESSAGE.fields_by_name['anonymousUserSession'])
+_CLIENTSESSIONMESSAGE.fields_by_name['anonymousUserSession'].containing_oneof = _CLIENTSESSIONMESSAGE.oneofs_by_name['SessionConfig']
 _CLIENTSUBSCRIBEMESSAGE.fields_by_name['subscriptions'].message_type = _CLIENTSUBSCRIPTION
 _CLIENTUNSUBSCRIBEMESSAGE.fields_by_name['subscriptions'].message_type = _CLIENTSUBSCRIPTION
 DESCRIPTOR.message_types_by_name['ClientMessage'] = _CLIENTMESSAGE
@@ -1041,6 +1118,13 @@ UserPushSubscription = _reflection.GeneratedProtocolMessageType('UserPushSubscri
     # @@protoc_insertion_point(class_scope:ProtobufClient.UserPushSubscription.Achievements)
     })
   ,
+
+  'BalanceUpdate' : _reflection.GeneratedProtocolMessageType('BalanceUpdate', (_message.Message,), {
+    'DESCRIPTOR' : _USERPUSHSUBSCRIPTION_BALANCEUPDATE,
+    '__module__' : 'public.client.client_pb2'
+    # @@protoc_insertion_point(class_scope:ProtobufClient.UserPushSubscription.BalanceUpdate)
+    })
+  ,
   'DESCRIPTOR' : _USERPUSHSUBSCRIPTION,
   '__module__' : 'public.client.client_pb2'
   # @@protoc_insertion_point(class_scope:ProtobufClient.UserPushSubscription)
@@ -1048,6 +1132,7 @@ UserPushSubscription = _reflection.GeneratedProtocolMessageType('UserPushSubscri
 _sym_db.RegisterMessage(UserPushSubscription)
 _sym_db.RegisterMessage(UserPushSubscription.TriggeredHandlers)
 _sym_db.RegisterMessage(UserPushSubscription.Achievements)
+_sym_db.RegisterMessage(UserPushSubscription.BalanceUpdate)
 
 TriggerSubscription = _reflection.GeneratedProtocolMessageType('TriggerSubscription', (_message.Message,), {
   'DESCRIPTOR' : _TRIGGERSUBSCRIPTION,
@@ -1085,6 +1170,13 @@ ClientSessionMessage = _reflection.GeneratedProtocolMessageType('ClientSessionMe
     # @@protoc_insertion_point(class_scope:ProtobufClient.ClientSessionMessage.AnonymousTradingSession)
     })
   ,
+
+  'AnonymousUserSession' : _reflection.GeneratedProtocolMessageType('AnonymousUserSession', (_message.Message,), {
+    'DESCRIPTOR' : _CLIENTSESSIONMESSAGE_ANONYMOUSUSERSESSION,
+    '__module__' : 'public.client.client_pb2'
+    # @@protoc_insertion_point(class_scope:ProtobufClient.ClientSessionMessage.AnonymousUserSession)
+    })
+  ,
   'DESCRIPTOR' : _CLIENTSESSIONMESSAGE,
   '__module__' : 'public.client.client_pb2'
   # @@protoc_insertion_point(class_scope:ProtobufClient.ClientSessionMessage)
@@ -1092,6 +1184,7 @@ ClientSessionMessage = _reflection.GeneratedProtocolMessageType('ClientSessionMe
 _sym_db.RegisterMessage(ClientSessionMessage)
 _sym_db.RegisterMessage(ClientSessionMessage.Session)
 _sym_db.RegisterMessage(ClientSessionMessage.AnonymousTradingSession)
+_sym_db.RegisterMessage(ClientSessionMessage.AnonymousUserSession)
 
 ClientSubscribeMessage = _reflection.GeneratedProtocolMessageType('ClientSubscribeMessage', (_message.Message,), {
   'DESCRIPTOR' : _CLIENTSUBSCRIBEMESSAGE,

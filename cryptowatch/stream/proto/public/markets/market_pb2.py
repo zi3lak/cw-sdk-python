@@ -18,10 +18,58 @@ DESCRIPTOR = _descriptor.FileDescriptor(
   package='ProtobufMarkets',
   syntax='proto3',
   serialized_options=None,
-  serialized_pb=b'\n\x1bpublic/markets/market.proto\x12\x0fProtobufMarkets\"n\n\x06Market\x12\x12\n\nexchangeId\x18\x03 \x01(\x04\x12\x16\n\x0e\x63urrencyPairId\x18\x04 \x01(\x04\x12\x10\n\x08marketId\x18\x05 \x01(\x04\x12\x10\n\x08\x65xchange\x18\x01 \x01(\t\x12\x14\n\x0c\x63urrencyPair\x18\x02 \x01(\t\"K\n\x05Order\x12\x10\n\x08priceStr\x18\x03 \x01(\t\x12\x11\n\tamountStr\x18\x04 \x01(\t\x12\r\n\x05price\x18\x01 \x01(\x02\x12\x0e\n\x06\x61mount\x18\x02 \x01(\x02\"\xdd\x01\n\x05Trade\x12\x12\n\nexternalId\x18\x0b \x01(\t\x12\x11\n\ttimestamp\x18\x02 \x01(\x03\x12\x1b\n\x0ftimestampMillis\x18\x05 \x01(\x03\x42\x02\x18\x01\x12\x15\n\rtimestampNano\x18\n \x01(\x03\x12\x10\n\x08priceStr\x18\x08 \x01(\t\x12\x11\n\tamountStr\x18\t \x01(\t\x12\r\n\x05price\x18\x03 \x01(\x02\x12\x0e\n\x06\x61mount\x18\x04 \x01(\x02\x12\x13\n\x0bpriceDouble\x18\x06 \x01(\x01\x12\x14\n\x0c\x61mountDouble\x18\x07 \x01(\x01\x12\n\n\x02id\x18\x01 \x01(\x03\"\xd4\x04\n\x13MarketUpdateMessage\x12\'\n\x06market\x18\t \x01(\x0b\x32\x17.ProtobufMarkets.Market\x12;\n\x0forderBookUpdate\x18\x02 \x01(\x0b\x32 .ProtobufMarkets.OrderBookUpdateH\x00\x12\x45\n\x14orderBookDeltaUpdate\x18\x03 \x01(\x0b\x32%.ProtobufMarkets.OrderBookDeltaUpdateH\x00\x12G\n\x15orderBookSpreadUpdate\x18\x0b \x01(\x0b\x32&.ProtobufMarkets.OrderBookSpreadUpdateH\x00\x12M\n\x18orderBookLiquidityUpdate\x18\x0c \x01(\x0b\x32).ProtobufMarkets.OrderBookLiquidityUpdateH\x00\x12\x35\n\x0ctradesUpdate\x18\x04 \x01(\x0b\x32\x1d.ProtobufMarkets.TradesUpdateH\x00\x12;\n\x0fintervalsUpdate\x18\x05 \x01(\x0b\x32 .ProtobufMarkets.IntervalsUpdateH\x00\x12\x37\n\rsummaryUpdate\x18\x06 \x01(\x0b\x32\x1e.ProtobufMarkets.SummaryUpdateH\x00\x12;\n\x0fsparklineUpdate\x18\x07 \x01(\x0b\x32 .ProtobufMarkets.SparklineUpdateH\x00\x42\x08\n\x06UpdateJ\x04\x08\x08\x10\t\"\xa8\x01\n\x0fOrderBookUpdate\x12\x1d\n\x15\x61ggregationModulusStr\x18\x04 \x01(\t\x12\x0e\n\x06seqNum\x18\x05 \x01(\x05\x12$\n\x04\x62ids\x18\x01 \x03(\x0b\x32\x16.ProtobufMarkets.Order\x12$\n\x04\x61sks\x18\x02 \x03(\x0b\x32\x16.ProtobufMarkets.Order\x12\x1a\n\x12\x61ggregationModulus\x18\x03 \x01(\x02\"\xe6\x02\n\x14OrderBookDeltaUpdate\x12\x1a\n\x12\x61ggregationModulus\x18\x03 \x01(\x02\x12\x1d\n\x15\x61ggregationModulusStr\x18\x04 \x01(\t\x12\x0e\n\x06seqNum\x18\x05 \x01(\x05\x12?\n\x04\x62ids\x18\x01 \x01(\x0b\x32\x31.ProtobufMarkets.OrderBookDeltaUpdate.OrderDeltas\x12?\n\x04\x61sks\x18\x02 \x01(\x0b\x32\x31.ProtobufMarkets.OrderBookDeltaUpdate.OrderDeltas\x1a\x80\x01\n\x0bOrderDeltas\x12#\n\x03set\x18\x01 \x03(\x0b\x32\x16.ProtobufMarkets.Order\x12%\n\x05\x64\x65lta\x18\x02 \x03(\x0b\x32\x16.ProtobufMarkets.Order\x12\x12\n\x06remove\x18\x03 \x03(\x02\x42\x02\x10\x00\x12\x11\n\tremoveStr\x18\x04 \x03(\t\"t\n\x15OrderBookSpreadUpdate\x12\x11\n\ttimestamp\x18\x01 \x01(\x03\x12#\n\x03\x62id\x18\x02 \x01(\x0b\x32\x16.ProtobufMarkets.Order\x12#\n\x03\x61sk\x18\x03 \x01(\x0b\x32\x16.ProtobufMarkets.Order\"\xea\x08\n\x18OrderBookLiquidityUpdate\x12\x11\n\ttimestamp\x18\x01 \x01(\x03\x12S\n\x03\x62id\x18\x02 \x01(\x0b\x32\x46.ProtobufMarkets.OrderBookLiquidityUpdate.OrderBookLiquidityUpdateSide\x12S\n\x03\x61sk\x18\x03 \x01(\x0b\x32\x46.ProtobufMarkets.OrderBookLiquidityUpdate.OrderBookLiquidityUpdateSide\x1a?\n\x16OrderBookLiquiditySums\x12\x11\n\ttotalBase\x18\x01 \x01(\t\x12\x12\n\ntotalQuote\x18\x02 \x01(\t\x1a\xcf\x06\n\x1cOrderBookLiquidityUpdateSide\x12O\n\x05\x62ip25\x18\x01 \x01(\x0b\x32@.ProtobufMarkets.OrderBookLiquidityUpdate.OrderBookLiquiditySums\x12O\n\x05\x62ip50\x18\x02 \x01(\x0b\x32@.ProtobufMarkets.OrderBookLiquidityUpdate.OrderBookLiquiditySums\x12O\n\x05\x62ip75\x18\x03 \x01(\x0b\x32@.ProtobufMarkets.OrderBookLiquidityUpdate.OrderBookLiquiditySums\x12P\n\x06\x62ip100\x18\x04 \x01(\x0b\x32@.ProtobufMarkets.OrderBookLiquidityUpdate.OrderBookLiquiditySums\x12P\n\x06\x62ip150\x18\x05 \x01(\x0b\x32@.ProtobufMarkets.OrderBookLiquidityUpdate.OrderBookLiquiditySums\x12P\n\x06\x62ip200\x18\x06 \x01(\x0b\x32@.ProtobufMarkets.OrderBookLiquidityUpdate.OrderBookLiquiditySums\x12P\n\x06\x62ip250\x18\x07 \x01(\x0b\x32@.ProtobufMarkets.OrderBookLiquidityUpdate.OrderBookLiquiditySums\x12P\n\x06\x62ip300\x18\x08 \x01(\x0b\x32@.ProtobufMarkets.OrderBookLiquidityUpdate.OrderBookLiquiditySums\x12P\n\x06\x62ip400\x18\t \x01(\x0b\x32@.ProtobufMarkets.OrderBookLiquidityUpdate.OrderBookLiquiditySums\x12P\n\x06\x62ip500\x18\n \x01(\x0b\x32@.ProtobufMarkets.OrderBookLiquidityUpdate.OrderBookLiquiditySums\"6\n\x0cTradesUpdate\x12&\n\x06trades\x18\x01 \x03(\x0b\x32\x16.ProtobufMarkets.Trade\"\xb8\x02\n\x08Interval\x12\x11\n\tclosetime\x18\x01 \x01(\x03\x12\x0e\n\x06period\x18\x04 \x01(\x05\x12,\n\x04ohlc\x18\x02 \x01(\x0b\x32\x1e.ProtobufMarkets.Interval.OHLC\x12\x15\n\rvolumeBaseStr\x18\x06 \x01(\t\x12\x16\n\x0evolumeQuoteStr\x18\x07 \x01(\t\x12\x12\n\nvolumeBase\x18\x03 \x01(\x02\x12\x13\n\x0bvolumeQuote\x18\x05 \x01(\x02\x1a\x82\x01\n\x04OHLC\x12\x0f\n\x07openStr\x18\x05 \x01(\t\x12\x0f\n\x07highStr\x18\x06 \x01(\t\x12\x0e\n\x06lowStr\x18\x07 \x01(\t\x12\x10\n\x08\x63loseStr\x18\x08 \x01(\t\x12\x0c\n\x04open\x18\x01 \x01(\x02\x12\x0c\n\x04high\x18\x02 \x01(\x02\x12\x0b\n\x03low\x18\x03 \x01(\x02\x12\r\n\x05\x63lose\x18\x04 \x01(\x02\"?\n\x0fIntervalsUpdate\x12,\n\tintervals\x18\x01 \x03(\x0b\x32\x19.ProtobufMarkets.Interval\"\xbf\x02\n\rSummaryUpdate\x12\x0f\n\x07lastStr\x18\n \x01(\t\x12\x0f\n\x07highStr\x18\x0b \x01(\t\x12\x0e\n\x06lowStr\x18\x0c \x01(\t\x12\x15\n\rvolumeBaseStr\x18\r \x01(\t\x12\x16\n\x0evolumeQuoteStr\x18\x0e \x01(\t\x12\x19\n\x11\x63hangeAbsoluteStr\x18\x0f \x01(\t\x12\x18\n\x10\x63hangePercentStr\x18\x10 \x01(\t\x12\x11\n\tnumTrades\x18\x08 \x01(\x05\x12\x0c\n\x04last\x18\x02 \x01(\x02\x12\x0c\n\x04high\x18\x03 \x01(\x02\x12\x0b\n\x03low\x18\x04 \x01(\x02\x12\x12\n\nvolumeBase\x18\x05 \x01(\x02\x12\x13\n\x0bvolumeQuote\x18\t \x01(\x02\x12\x16\n\x0e\x63hangeAbsolute\x18\x06 \x01(\x02\x12\x15\n\rchangePercent\x18\x07 \x01(\x02J\x04\x08\x01\x10\x02\"F\n\x0fSparklineUpdate\x12\x0c\n\x04time\x18\x02 \x01(\x03\x12\r\n\x05price\x18\x03 \x01(\x02\x12\x10\n\x08priceStr\x18\x04 \x01(\tJ\x04\x08\x01\x10\x02\x62\x06proto3'
+  serialized_pb=b'\n\x1bpublic/markets/market.proto\x12\x0fProtobufMarkets\"n\n\x06Market\x12\x12\n\nexchangeId\x18\x03 \x01(\x04\x12\x16\n\x0e\x63urrencyPairId\x18\x04 \x01(\x04\x12\x10\n\x08marketId\x18\x05 \x01(\x04\x12\x10\n\x08\x65xchange\x18\x01 \x01(\t\x12\x14\n\x0c\x63urrencyPair\x18\x02 \x01(\t\"G\n\x05Order\x12\x10\n\x08priceStr\x18\x03 \x01(\t\x12\x11\n\tamountStr\x18\x04 \x01(\tJ\x04\x08\x01\x10\x02J\x04\x08\x02\x10\x03R\x05priceR\x06\x61mount\"\xea\x02\n\x05Trade\x12\x12\n\nexternalId\x18\x0b \x01(\t\x12\x11\n\ttimestamp\x18\x02 \x01(\x03\x12\x15\n\rtimestampNano\x18\n \x01(\x03\x12\x10\n\x08priceStr\x18\x08 \x01(\t\x12\x11\n\tamountStr\x18\t \x01(\t\x12\x33\n\torderSide\x18\r \x01(\x0e\x32 .ProtobufMarkets.Trade.OrderSide\"3\n\tOrderSide\x12\x0b\n\x07UNKNOWN\x10\x00\x12\x0b\n\x07\x42UYSIDE\x10\x01\x12\x0c\n\x08SELLSIDE\x10\x02\"%\n\x04Side\x12\x0b\n\x03\x42UY\x10\x00\x1a\x02\x08\x01\x12\x0c\n\x04SELL\x10\x01\x1a\x02\x08\x01\x1a\x02\x18\x01J\x04\x08\x01\x10\x02J\x04\x08\x03\x10\x04J\x04\x08\x04\x10\x05J\x04\x08\x05\x10\x06J\x04\x08\x06\x10\x07J\x04\x08\x07\x10\x08J\x04\x08\x0c\x10\rR\x05priceR\x06\x61mountR\x0ftimestampMillisR\x02idR\x0bpriceDoubleR\x0c\x61mountDoubleR\x04side\"\xd4\x04\n\x13MarketUpdateMessage\x12\'\n\x06market\x18\t \x01(\x0b\x32\x17.ProtobufMarkets.Market\x12;\n\x0forderBookUpdate\x18\x02 \x01(\x0b\x32 .ProtobufMarkets.OrderBookUpdateH\x00\x12\x45\n\x14orderBookDeltaUpdate\x18\x03 \x01(\x0b\x32%.ProtobufMarkets.OrderBookDeltaUpdateH\x00\x12G\n\x15orderBookSpreadUpdate\x18\x0b \x01(\x0b\x32&.ProtobufMarkets.OrderBookSpreadUpdateH\x00\x12M\n\x18orderBookLiquidityUpdate\x18\x0c \x01(\x0b\x32).ProtobufMarkets.OrderBookLiquidityUpdateH\x00\x12\x35\n\x0ctradesUpdate\x18\x04 \x01(\x0b\x32\x1d.ProtobufMarkets.TradesUpdateH\x00\x12;\n\x0fintervalsUpdate\x18\x05 \x01(\x0b\x32 .ProtobufMarkets.IntervalsUpdateH\x00\x12\x37\n\rsummaryUpdate\x18\x06 \x01(\x0b\x32\x1e.ProtobufMarkets.SummaryUpdateH\x00\x12;\n\x0fsparklineUpdate\x18\x07 \x01(\x0b\x32 .ProtobufMarkets.SparklineUpdateH\x00\x42\x08\n\x06UpdateJ\x04\x08\x08\x10\t\"\xa6\x01\n\x0fOrderBookUpdate\x12\x1d\n\x15\x61ggregationModulusStr\x18\x04 \x01(\t\x12\x0e\n\x06seqNum\x18\x05 \x01(\x05\x12$\n\x04\x62ids\x18\x01 \x03(\x0b\x32\x16.ProtobufMarkets.Order\x12$\n\x04\x61sks\x18\x02 \x03(\x0b\x32\x16.ProtobufMarkets.OrderJ\x04\x08\x03\x10\x04R\x12\x61ggregationModulus\"\xdd\x02\n\x14OrderBookDeltaUpdate\x12\x1d\n\x15\x61ggregationModulusStr\x18\x04 \x01(\t\x12\x0e\n\x06seqNum\x18\x05 \x01(\x05\x12?\n\x04\x62ids\x18\x01 \x01(\x0b\x32\x31.ProtobufMarkets.OrderBookDeltaUpdate.OrderDeltas\x12?\n\x04\x61sks\x18\x02 \x01(\x0b\x32\x31.ProtobufMarkets.OrderBookDeltaUpdate.OrderDeltas\x1az\n\x0bOrderDeltas\x12#\n\x03set\x18\x01 \x03(\x0b\x32\x16.ProtobufMarkets.Order\x12%\n\x05\x64\x65lta\x18\x02 \x03(\x0b\x32\x16.ProtobufMarkets.Order\x12\x11\n\tremoveStr\x18\x04 \x03(\tJ\x04\x08\x03\x10\x04R\x06removeJ\x04\x08\x03\x10\x04R\x12\x61ggregationModulus\"t\n\x15OrderBookSpreadUpdate\x12\x11\n\ttimestamp\x18\x01 \x01(\x03\x12#\n\x03\x62id\x18\x02 \x01(\x0b\x32\x16.ProtobufMarkets.Order\x12#\n\x03\x61sk\x18\x03 \x01(\x0b\x32\x16.ProtobufMarkets.Order\"\xea\x08\n\x18OrderBookLiquidityUpdate\x12\x11\n\ttimestamp\x18\x01 \x01(\x03\x12S\n\x03\x62id\x18\x02 \x01(\x0b\x32\x46.ProtobufMarkets.OrderBookLiquidityUpdate.OrderBookLiquidityUpdateSide\x12S\n\x03\x61sk\x18\x03 \x01(\x0b\x32\x46.ProtobufMarkets.OrderBookLiquidityUpdate.OrderBookLiquidityUpdateSide\x1a?\n\x16OrderBookLiquiditySums\x12\x11\n\ttotalBase\x18\x01 \x01(\t\x12\x12\n\ntotalQuote\x18\x02 \x01(\t\x1a\xcf\x06\n\x1cOrderBookLiquidityUpdateSide\x12O\n\x05\x62ip25\x18\x01 \x01(\x0b\x32@.ProtobufMarkets.OrderBookLiquidityUpdate.OrderBookLiquiditySums\x12O\n\x05\x62ip50\x18\x02 \x01(\x0b\x32@.ProtobufMarkets.OrderBookLiquidityUpdate.OrderBookLiquiditySums\x12O\n\x05\x62ip75\x18\x03 \x01(\x0b\x32@.ProtobufMarkets.OrderBookLiquidityUpdate.OrderBookLiquiditySums\x12P\n\x06\x62ip100\x18\x04 \x01(\x0b\x32@.ProtobufMarkets.OrderBookLiquidityUpdate.OrderBookLiquiditySums\x12P\n\x06\x62ip150\x18\x05 \x01(\x0b\x32@.ProtobufMarkets.OrderBookLiquidityUpdate.OrderBookLiquiditySums\x12P\n\x06\x62ip200\x18\x06 \x01(\x0b\x32@.ProtobufMarkets.OrderBookLiquidityUpdate.OrderBookLiquiditySums\x12P\n\x06\x62ip250\x18\x07 \x01(\x0b\x32@.ProtobufMarkets.OrderBookLiquidityUpdate.OrderBookLiquiditySums\x12P\n\x06\x62ip300\x18\x08 \x01(\x0b\x32@.ProtobufMarkets.OrderBookLiquidityUpdate.OrderBookLiquiditySums\x12P\n\x06\x62ip400\x18\t \x01(\x0b\x32@.ProtobufMarkets.OrderBookLiquidityUpdate.OrderBookLiquiditySums\x12P\n\x06\x62ip500\x18\n \x01(\x0b\x32@.ProtobufMarkets.OrderBookLiquidityUpdate.OrderBookLiquiditySums\"6\n\x0cTradesUpdate\x12&\n\x06trades\x18\x01 \x03(\x0b\x32\x16.ProtobufMarkets.Trade\"\xbf\x02\n\x08Interval\x12\x11\n\tclosetime\x18\x01 \x01(\x03\x12,\n\x04ohlc\x18\x02 \x01(\x0b\x32\x1e.ProtobufMarkets.Interval.OHLC\x12\x15\n\rvolumeBaseStr\x18\x06 \x01(\t\x12\x16\n\x0evolumeQuoteStr\x18\x07 \x01(\t\x12\x12\n\nperiodName\x18\t \x01(\t\x12\x0e\n\x06period\x18\x04 \x01(\x05\x1az\n\x04OHLC\x12\x0f\n\x07openStr\x18\x05 \x01(\t\x12\x0f\n\x07highStr\x18\x06 \x01(\t\x12\x0e\n\x06lowStr\x18\x07 \x01(\t\x12\x10\n\x08\x63loseStr\x18\x08 \x01(\tJ\x04\x08\x01\x10\x02J\x04\x08\x02\x10\x03J\x04\x08\x03\x10\x04J\x04\x08\x04\x10\x05R\x04openR\x04highR\x03lowR\x05\x63loseJ\x04\x08\x03\x10\x04J\x04\x08\x05\x10\x06R\nvolumeBaseR\x0bvolumeQuote\"?\n\x0fIntervalsUpdate\x12,\n\tintervals\x18\x01 \x03(\x0b\x32\x19.ProtobufMarkets.Interval\"\xb1\x02\n\rSummaryUpdate\x12\x0f\n\x07lastStr\x18\n \x01(\t\x12\x0f\n\x07highStr\x18\x0b \x01(\t\x12\x0e\n\x06lowStr\x18\x0c \x01(\t\x12\x15\n\rvolumeBaseStr\x18\r \x01(\t\x12\x16\n\x0evolumeQuoteStr\x18\x0e \x01(\t\x12\x19\n\x11\x63hangeAbsoluteStr\x18\x0f \x01(\t\x12\x18\n\x10\x63hangePercentStr\x18\x10 \x01(\t\x12\x11\n\tnumTrades\x18\x08 \x01(\x05J\x04\x08\x01\x10\x02J\x04\x08\x02\x10\x03J\x04\x08\x03\x10\x04J\x04\x08\x04\x10\x05J\x04\x08\x05\x10\x06J\x04\x08\x06\x10\x07J\x04\x08\x07\x10\x08J\x04\x08\t\x10\nR\x04lastR\x04highR\x03lowR\nvolumeBaseR\x0bvolumeQuoteR\x0e\x63hangeAbsoluteR\rchangePercent\"D\n\x0fSparklineUpdate\x12\x0c\n\x04time\x18\x02 \x01(\x03\x12\x10\n\x08priceStr\x18\x04 \x01(\tJ\x04\x08\x01\x10\x02J\x04\x08\x03\x10\x04R\x05priceb\x06proto3'
 )
 
 
+
+_TRADE_ORDERSIDE = _descriptor.EnumDescriptor(
+  name='OrderSide',
+  full_name='ProtobufMarkets.Trade.OrderSide',
+  filename=None,
+  file=DESCRIPTOR,
+  values=[
+    _descriptor.EnumValueDescriptor(
+      name='UNKNOWN', index=0, number=0,
+      serialized_options=None,
+      type=None),
+    _descriptor.EnumValueDescriptor(
+      name='BUYSIDE', index=1, number=1,
+      serialized_options=None,
+      type=None),
+    _descriptor.EnumValueDescriptor(
+      name='SELLSIDE', index=2, number=2,
+      serialized_options=None,
+      type=None),
+  ],
+  containing_type=None,
+  serialized_options=None,
+  serialized_start=395,
+  serialized_end=446,
+)
+_sym_db.RegisterEnumDescriptor(_TRADE_ORDERSIDE)
+
+_TRADE_SIDE = _descriptor.EnumDescriptor(
+  name='Side',
+  full_name='ProtobufMarkets.Trade.Side',
+  filename=None,
+  file=DESCRIPTOR,
+  values=[
+    _descriptor.EnumValueDescriptor(
+      name='BUY', index=0, number=0,
+      serialized_options=b'\010\001',
+      type=None),
+    _descriptor.EnumValueDescriptor(
+      name='SELL', index=1, number=1,
+      serialized_options=b'\010\001',
+      type=None),
+  ],
+  containing_type=None,
+  serialized_options=b'\030\001',
+  serialized_start=448,
+  serialized_end=485,
+)
+_sym_db.RegisterEnumDescriptor(_TRADE_SIDE)
 
 
 _MARKET = _descriptor.Descriptor(
@@ -104,20 +152,6 @@ _ORDER = _descriptor.Descriptor(
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR),
-    _descriptor.FieldDescriptor(
-      name='price', full_name='ProtobufMarkets.Order.price', index=2,
-      number=1, type=2, cpp_type=6, label=1,
-      has_default_value=False, default_value=float(0),
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR),
-    _descriptor.FieldDescriptor(
-      name='amount', full_name='ProtobufMarkets.Order.amount', index=3,
-      number=2, type=2, cpp_type=6, label=1,
-      has_default_value=False, default_value=float(0),
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR),
   ],
   extensions=[
   ],
@@ -131,7 +165,7 @@ _ORDER = _descriptor.Descriptor(
   oneofs=[
   ],
   serialized_start=160,
-  serialized_end=235,
+  serialized_end=231,
 )
 
 
@@ -157,64 +191,29 @@ _TRADE = _descriptor.Descriptor(
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR),
     _descriptor.FieldDescriptor(
-      name='timestampMillis', full_name='ProtobufMarkets.Trade.timestampMillis', index=2,
-      number=5, type=3, cpp_type=2, label=1,
-      has_default_value=False, default_value=0,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=b'\030\001', file=DESCRIPTOR),
-    _descriptor.FieldDescriptor(
-      name='timestampNano', full_name='ProtobufMarkets.Trade.timestampNano', index=3,
+      name='timestampNano', full_name='ProtobufMarkets.Trade.timestampNano', index=2,
       number=10, type=3, cpp_type=2, label=1,
       has_default_value=False, default_value=0,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR),
     _descriptor.FieldDescriptor(
-      name='priceStr', full_name='ProtobufMarkets.Trade.priceStr', index=4,
+      name='priceStr', full_name='ProtobufMarkets.Trade.priceStr', index=3,
       number=8, type=9, cpp_type=9, label=1,
       has_default_value=False, default_value=b"".decode('utf-8'),
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR),
     _descriptor.FieldDescriptor(
-      name='amountStr', full_name='ProtobufMarkets.Trade.amountStr', index=5,
+      name='amountStr', full_name='ProtobufMarkets.Trade.amountStr', index=4,
       number=9, type=9, cpp_type=9, label=1,
       has_default_value=False, default_value=b"".decode('utf-8'),
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR),
     _descriptor.FieldDescriptor(
-      name='price', full_name='ProtobufMarkets.Trade.price', index=6,
-      number=3, type=2, cpp_type=6, label=1,
-      has_default_value=False, default_value=float(0),
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR),
-    _descriptor.FieldDescriptor(
-      name='amount', full_name='ProtobufMarkets.Trade.amount', index=7,
-      number=4, type=2, cpp_type=6, label=1,
-      has_default_value=False, default_value=float(0),
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR),
-    _descriptor.FieldDescriptor(
-      name='priceDouble', full_name='ProtobufMarkets.Trade.priceDouble', index=8,
-      number=6, type=1, cpp_type=5, label=1,
-      has_default_value=False, default_value=float(0),
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR),
-    _descriptor.FieldDescriptor(
-      name='amountDouble', full_name='ProtobufMarkets.Trade.amountDouble', index=9,
-      number=7, type=1, cpp_type=5, label=1,
-      has_default_value=False, default_value=float(0),
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR),
-    _descriptor.FieldDescriptor(
-      name='id', full_name='ProtobufMarkets.Trade.id', index=10,
-      number=1, type=3, cpp_type=2, label=1,
+      name='orderSide', full_name='ProtobufMarkets.Trade.orderSide', index=5,
+      number=13, type=14, cpp_type=8, label=1,
       has_default_value=False, default_value=0,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
@@ -224,6 +223,8 @@ _TRADE = _descriptor.Descriptor(
   ],
   nested_types=[],
   enum_types=[
+    _TRADE_ORDERSIDE,
+    _TRADE_SIDE,
   ],
   serialized_options=None,
   is_extendable=False,
@@ -231,8 +232,8 @@ _TRADE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=238,
-  serialized_end=459,
+  serialized_start=234,
+  serialized_end=596,
 )
 
 
@@ -321,8 +322,8 @@ _MARKETUPDATEMESSAGE = _descriptor.Descriptor(
       name='Update', full_name='ProtobufMarkets.MarketUpdateMessage.Update',
       index=0, containing_type=None, fields=[]),
   ],
-  serialized_start=462,
-  serialized_end=1058,
+  serialized_start=599,
+  serialized_end=1195,
 )
 
 
@@ -361,13 +362,6 @@ _ORDERBOOKUPDATE = _descriptor.Descriptor(
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR),
-    _descriptor.FieldDescriptor(
-      name='aggregationModulus', full_name='ProtobufMarkets.OrderBookUpdate.aggregationModulus', index=4,
-      number=3, type=2, cpp_type=6, label=1,
-      has_default_value=False, default_value=float(0),
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR),
   ],
   extensions=[
   ],
@@ -380,8 +374,8 @@ _ORDERBOOKUPDATE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=1061,
-  serialized_end=1229,
+  serialized_start=1198,
+  serialized_end=1364,
 )
 
 
@@ -407,14 +401,7 @@ _ORDERBOOKDELTAUPDATE_ORDERDELTAS = _descriptor.Descriptor(
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR),
     _descriptor.FieldDescriptor(
-      name='remove', full_name='ProtobufMarkets.OrderBookDeltaUpdate.OrderDeltas.remove', index=2,
-      number=3, type=2, cpp_type=6, label=3,
-      has_default_value=False, default_value=[],
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=b'\020\000', file=DESCRIPTOR),
-    _descriptor.FieldDescriptor(
-      name='removeStr', full_name='ProtobufMarkets.OrderBookDeltaUpdate.OrderDeltas.removeStr', index=3,
+      name='removeStr', full_name='ProtobufMarkets.OrderBookDeltaUpdate.OrderDeltas.removeStr', index=2,
       number=4, type=9, cpp_type=9, label=3,
       has_default_value=False, default_value=[],
       message_type=None, enum_type=None, containing_type=None,
@@ -432,8 +419,8 @@ _ORDERBOOKDELTAUPDATE_ORDERDELTAS = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=1462,
-  serialized_end=1590,
+  serialized_start=1568,
+  serialized_end=1690,
 )
 
 _ORDERBOOKDELTAUPDATE = _descriptor.Descriptor(
@@ -444,35 +431,28 @@ _ORDERBOOKDELTAUPDATE = _descriptor.Descriptor(
   containing_type=None,
   fields=[
     _descriptor.FieldDescriptor(
-      name='aggregationModulus', full_name='ProtobufMarkets.OrderBookDeltaUpdate.aggregationModulus', index=0,
-      number=3, type=2, cpp_type=6, label=1,
-      has_default_value=False, default_value=float(0),
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR),
-    _descriptor.FieldDescriptor(
-      name='aggregationModulusStr', full_name='ProtobufMarkets.OrderBookDeltaUpdate.aggregationModulusStr', index=1,
+      name='aggregationModulusStr', full_name='ProtobufMarkets.OrderBookDeltaUpdate.aggregationModulusStr', index=0,
       number=4, type=9, cpp_type=9, label=1,
       has_default_value=False, default_value=b"".decode('utf-8'),
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR),
     _descriptor.FieldDescriptor(
-      name='seqNum', full_name='ProtobufMarkets.OrderBookDeltaUpdate.seqNum', index=2,
+      name='seqNum', full_name='ProtobufMarkets.OrderBookDeltaUpdate.seqNum', index=1,
       number=5, type=5, cpp_type=1, label=1,
       has_default_value=False, default_value=0,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR),
     _descriptor.FieldDescriptor(
-      name='bids', full_name='ProtobufMarkets.OrderBookDeltaUpdate.bids', index=3,
+      name='bids', full_name='ProtobufMarkets.OrderBookDeltaUpdate.bids', index=2,
       number=1, type=11, cpp_type=10, label=1,
       has_default_value=False, default_value=None,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR),
     _descriptor.FieldDescriptor(
-      name='asks', full_name='ProtobufMarkets.OrderBookDeltaUpdate.asks', index=4,
+      name='asks', full_name='ProtobufMarkets.OrderBookDeltaUpdate.asks', index=3,
       number=2, type=11, cpp_type=10, label=1,
       has_default_value=False, default_value=None,
       message_type=None, enum_type=None, containing_type=None,
@@ -490,8 +470,8 @@ _ORDERBOOKDELTAUPDATE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=1232,
-  serialized_end=1590,
+  serialized_start=1367,
+  serialized_end=1716,
 )
 
 
@@ -535,8 +515,8 @@ _ORDERBOOKSPREADUPDATE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=1592,
-  serialized_end=1708,
+  serialized_start=1718,
+  serialized_end=1834,
 )
 
 
@@ -573,8 +553,8 @@ _ORDERBOOKLIQUIDITYUPDATE_ORDERBOOKLIQUIDITYSUMS = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=1928,
-  serialized_end=1991,
+  serialized_start=2054,
+  serialized_end=2117,
 )
 
 _ORDERBOOKLIQUIDITYUPDATE_ORDERBOOKLIQUIDITYUPDATESIDE = _descriptor.Descriptor(
@@ -666,8 +646,8 @@ _ORDERBOOKLIQUIDITYUPDATE_ORDERBOOKLIQUIDITYUPDATESIDE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=1994,
-  serialized_end=2841,
+  serialized_start=2120,
+  serialized_end=2967,
 )
 
 _ORDERBOOKLIQUIDITYUPDATE = _descriptor.Descriptor(
@@ -710,8 +690,8 @@ _ORDERBOOKLIQUIDITYUPDATE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=1711,
-  serialized_end=2841,
+  serialized_start=1837,
+  serialized_end=2967,
 )
 
 
@@ -741,8 +721,8 @@ _TRADESUPDATE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=2843,
-  serialized_end=2897,
+  serialized_start=2969,
+  serialized_end=3023,
 )
 
 
@@ -781,34 +761,6 @@ _INTERVAL_OHLC = _descriptor.Descriptor(
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR),
-    _descriptor.FieldDescriptor(
-      name='open', full_name='ProtobufMarkets.Interval.OHLC.open', index=4,
-      number=1, type=2, cpp_type=6, label=1,
-      has_default_value=False, default_value=float(0),
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR),
-    _descriptor.FieldDescriptor(
-      name='high', full_name='ProtobufMarkets.Interval.OHLC.high', index=5,
-      number=2, type=2, cpp_type=6, label=1,
-      has_default_value=False, default_value=float(0),
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR),
-    _descriptor.FieldDescriptor(
-      name='low', full_name='ProtobufMarkets.Interval.OHLC.low', index=6,
-      number=3, type=2, cpp_type=6, label=1,
-      has_default_value=False, default_value=float(0),
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR),
-    _descriptor.FieldDescriptor(
-      name='close', full_name='ProtobufMarkets.Interval.OHLC.close', index=7,
-      number=4, type=2, cpp_type=6, label=1,
-      has_default_value=False, default_value=float(0),
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR),
   ],
   extensions=[
   ],
@@ -821,8 +773,8 @@ _INTERVAL_OHLC = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=3082,
-  serialized_end=3212,
+  serialized_start=3186,
+  serialized_end=3308,
 )
 
 _INTERVAL = _descriptor.Descriptor(
@@ -840,44 +792,37 @@ _INTERVAL = _descriptor.Descriptor(
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR),
     _descriptor.FieldDescriptor(
-      name='period', full_name='ProtobufMarkets.Interval.period', index=1,
-      number=4, type=5, cpp_type=1, label=1,
-      has_default_value=False, default_value=0,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR),
-    _descriptor.FieldDescriptor(
-      name='ohlc', full_name='ProtobufMarkets.Interval.ohlc', index=2,
+      name='ohlc', full_name='ProtobufMarkets.Interval.ohlc', index=1,
       number=2, type=11, cpp_type=10, label=1,
       has_default_value=False, default_value=None,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR),
     _descriptor.FieldDescriptor(
-      name='volumeBaseStr', full_name='ProtobufMarkets.Interval.volumeBaseStr', index=3,
+      name='volumeBaseStr', full_name='ProtobufMarkets.Interval.volumeBaseStr', index=2,
       number=6, type=9, cpp_type=9, label=1,
       has_default_value=False, default_value=b"".decode('utf-8'),
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR),
     _descriptor.FieldDescriptor(
-      name='volumeQuoteStr', full_name='ProtobufMarkets.Interval.volumeQuoteStr', index=4,
+      name='volumeQuoteStr', full_name='ProtobufMarkets.Interval.volumeQuoteStr', index=3,
       number=7, type=9, cpp_type=9, label=1,
       has_default_value=False, default_value=b"".decode('utf-8'),
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR),
     _descriptor.FieldDescriptor(
-      name='volumeBase', full_name='ProtobufMarkets.Interval.volumeBase', index=5,
-      number=3, type=2, cpp_type=6, label=1,
-      has_default_value=False, default_value=float(0),
+      name='periodName', full_name='ProtobufMarkets.Interval.periodName', index=4,
+      number=9, type=9, cpp_type=9, label=1,
+      has_default_value=False, default_value=b"".decode('utf-8'),
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR),
     _descriptor.FieldDescriptor(
-      name='volumeQuote', full_name='ProtobufMarkets.Interval.volumeQuote', index=6,
-      number=5, type=2, cpp_type=6, label=1,
-      has_default_value=False, default_value=float(0),
+      name='period', full_name='ProtobufMarkets.Interval.period', index=5,
+      number=4, type=5, cpp_type=1, label=1,
+      has_default_value=False, default_value=0,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR),
@@ -893,8 +838,8 @@ _INTERVAL = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=2900,
-  serialized_end=3212,
+  serialized_start=3026,
+  serialized_end=3345,
 )
 
 
@@ -924,8 +869,8 @@ _INTERVALSUPDATE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=3214,
-  serialized_end=3277,
+  serialized_start=3347,
+  serialized_end=3410,
 )
 
 
@@ -992,55 +937,6 @@ _SUMMARYUPDATE = _descriptor.Descriptor(
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR),
-    _descriptor.FieldDescriptor(
-      name='last', full_name='ProtobufMarkets.SummaryUpdate.last', index=8,
-      number=2, type=2, cpp_type=6, label=1,
-      has_default_value=False, default_value=float(0),
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR),
-    _descriptor.FieldDescriptor(
-      name='high', full_name='ProtobufMarkets.SummaryUpdate.high', index=9,
-      number=3, type=2, cpp_type=6, label=1,
-      has_default_value=False, default_value=float(0),
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR),
-    _descriptor.FieldDescriptor(
-      name='low', full_name='ProtobufMarkets.SummaryUpdate.low', index=10,
-      number=4, type=2, cpp_type=6, label=1,
-      has_default_value=False, default_value=float(0),
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR),
-    _descriptor.FieldDescriptor(
-      name='volumeBase', full_name='ProtobufMarkets.SummaryUpdate.volumeBase', index=11,
-      number=5, type=2, cpp_type=6, label=1,
-      has_default_value=False, default_value=float(0),
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR),
-    _descriptor.FieldDescriptor(
-      name='volumeQuote', full_name='ProtobufMarkets.SummaryUpdate.volumeQuote', index=12,
-      number=9, type=2, cpp_type=6, label=1,
-      has_default_value=False, default_value=float(0),
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR),
-    _descriptor.FieldDescriptor(
-      name='changeAbsolute', full_name='ProtobufMarkets.SummaryUpdate.changeAbsolute', index=13,
-      number=6, type=2, cpp_type=6, label=1,
-      has_default_value=False, default_value=float(0),
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR),
-    _descriptor.FieldDescriptor(
-      name='changePercent', full_name='ProtobufMarkets.SummaryUpdate.changePercent', index=14,
-      number=7, type=2, cpp_type=6, label=1,
-      has_default_value=False, default_value=float(0),
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR),
   ],
   extensions=[
   ],
@@ -1053,8 +949,8 @@ _SUMMARYUPDATE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=3280,
-  serialized_end=3599,
+  serialized_start=3413,
+  serialized_end=3718,
 )
 
 
@@ -1073,14 +969,7 @@ _SPARKLINEUPDATE = _descriptor.Descriptor(
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR),
     _descriptor.FieldDescriptor(
-      name='price', full_name='ProtobufMarkets.SparklineUpdate.price', index=1,
-      number=3, type=2, cpp_type=6, label=1,
-      has_default_value=False, default_value=float(0),
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR),
-    _descriptor.FieldDescriptor(
-      name='priceStr', full_name='ProtobufMarkets.SparklineUpdate.priceStr', index=2,
+      name='priceStr', full_name='ProtobufMarkets.SparklineUpdate.priceStr', index=1,
       number=4, type=9, cpp_type=9, label=1,
       has_default_value=False, default_value=b"".decode('utf-8'),
       message_type=None, enum_type=None, containing_type=None,
@@ -1098,10 +987,13 @@ _SPARKLINEUPDATE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=3601,
-  serialized_end=3671,
+  serialized_start=3720,
+  serialized_end=3788,
 )
 
+_TRADE.fields_by_name['orderSide'].enum_type = _TRADE_ORDERSIDE
+_TRADE_ORDERSIDE.containing_type = _TRADE
+_TRADE_SIDE.containing_type = _TRADE
 _MARKETUPDATEMESSAGE.fields_by_name['market'].message_type = _MARKET
 _MARKETUPDATEMESSAGE.fields_by_name['orderBookUpdate'].message_type = _ORDERBOOKUPDATE
 _MARKETUPDATEMESSAGE.fields_by_name['orderBookDeltaUpdate'].message_type = _ORDERBOOKDELTAUPDATE
@@ -1301,6 +1193,7 @@ SparklineUpdate = _reflection.GeneratedProtocolMessageType('SparklineUpdate', (_
 _sym_db.RegisterMessage(SparklineUpdate)
 
 
-_TRADE.fields_by_name['timestampMillis']._options = None
-_ORDERBOOKDELTAUPDATE_ORDERDELTAS.fields_by_name['remove']._options = None
+_TRADE_SIDE._options = None
+_TRADE_SIDE.values_by_name["BUY"]._options = None
+_TRADE_SIDE.values_by_name["SELL"]._options = None
 # @@protoc_insertion_point(module_scope)
