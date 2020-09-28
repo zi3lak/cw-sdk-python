@@ -70,7 +70,9 @@ for market in kraken.markets:
 
 ## API Crendential
 
-Using a credential file will allow you to authenticate your requests and grant you the API access of your account tier (Free, Basic or Pro).
+Using a credential file will allow you to authenticate your requests and grant you the API access of your Cryptowatch account.
+
+Your account Credits will be consumed for the REST and WebSocket API. Specific Credit cost details can be found on the [Pricing page](https://cryptowat.ch/pricing).
 
 ### Setup your credential file
 
